@@ -527,258 +527,88 @@ galleryImages.forEach(
 
 
 // =========================================================
-// FUTURISTIC NCC CURSOR
+// PREMIUM NCC CURSOR
 // =========================================================
 
-/*
-   The custom cursor is only enabled
-   on devices with a real mouse.
+(() => {
+  // Disable on touch/mobile devices
+  if (window.matchMedia("(pointer: coarse)").matches) return;
 
-   Phones/tablets automatically use
-   their normal touch interaction.
-*/
+  const cursor = document.createElement("div");
+  cursor.className = "premium-cursor";
 
+  const core = document.createElement("div");
+  core.className = "cursor-core";
 
-const hasMouse =
-  window.matchMedia(
-    "(hover: hover) and (pointer: fine)"
-  ).matches;
+  const aura = document.createElement("div");
+  aura.className = "cursor-aura";
 
+  const trail = document.createElement("div");
+  trail.className = "cursor-trail";
 
-if (hasMouse) {
+  cursor.appendChild(trail);
+  cursor.appendChild(aura);
+  cursor.appendChild(core);
 
+  document.body.appendChild(cursor);
 
-  // -------------------------------------------------------
-  // Cursor elements
-  // -------------------------------------------------------
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
 
-  const cursorDot =
-    document.createElement("div");
+  let currentX = mouseX;
+  let currentY = mouseY;
 
-  cursorDot.className =
-    "cursor-dot";
+  let trailX = mouseX;
+  let trailY = mouseY;
 
-
-  const cursorRing =
-    document.createElement("div");
-
-  cursorRing.className =
-    "cursor-ring";
-
-
-  document.body.appendChild(
-    cursorDot
-  );
-
-  document.body.appendChild(
-    cursorRing
-  );
-
-
-  // -------------------------------------------------------
-  // Mouse position
-  // -------------------------------------------------------
-
-  let mouseX =
-    window.innerWidth / 2;
-
-  let mouseY =
-    window.innerHeight / 2;
-
-
-  let ringX = mouseX;
-  let ringY = mouseY;
-
-
-  // -------------------------------------------------------
   // Mouse movement
-  // -------------------------------------------------------
+  window.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
 
-  document.addEventListener(
-    "mousemove",
-    (event) => {
-
-      mouseX =
-        event.clientX;
-
-      mouseY =
-        event.clientY;
-
-
-      cursorDot.style.left =
-        mouseX + "px";
-
-      cursorDot.style.top =
-        mouseY + "px";
-
-
-      /*
-         Small trail particles.
-
-         They appear only sometimes,
-         so the effect stays elegant.
-      */
-
-      if (
-        Math.random() > 0.72
-      ) {
-
-        const trail =
-          document.createElement(
-            "div"
-          );
-
-
-        trail.className =
-          "cursor-trail";
-
-
-        trail.style.left =
-          mouseX + "px";
-
-
-        trail.style.top =
-          mouseY + "px";
-
-
-        document.body.appendChild(
-          trail
-        );
-
-
-        setTimeout(() => {
-
-          trail.remove();
-
-        }, 700);
-
-      }
-
-    }
-  );
-
-
-  // -------------------------------------------------------
-  // Smooth cursor ring
-  // -------------------------------------------------------
-
+  // Smooth animation
   function animateCursor() {
+    currentX += (mouseX - currentX) * 0.22;
+    currentY += (mouseY - currentY) * 0.22;
 
-    ringX +=
-      (mouseX - ringX) *
-      0.12;
+    trailX += (mouseX - trailX) * 0.08;
+    trailY += (mouseY - trailY) * 0.08;
 
+    cursor.style.transform =
+      `translate3d(${currentX}px, ${currentY}px, 0)`;
 
-    ringY +=
-      (mouseY - ringY) *
-      0.12;
+    trail.style.transform =
+      `translate3d(${trailX - currentX}px, ${trailY - currentY}px, 0)`;
 
-
-    cursorRing.style.left =
-      ringX + "px";
-
-
-    cursorRing.style.top =
-      ringY + "px";
-
-
-    requestAnimationFrame(
-      animateCursor
-    );
-
+    requestAnimationFrame(animateCursor);
   }
-
 
   animateCursor();
 
-
-  // -------------------------------------------------------
-  // Cursor hover targets
-  // -------------------------------------------------------
-
-  function setupCursorTargets() {
-
-    const cursorTargets =
-      document.querySelectorAll(
-        `
-        a,
-        button,
-        .btn,
-        .card,
-        .leader-card,
-        .activity-card,
-        .timeline-item,
-        .batch-card,
-        .rank-card,
-        .cadet-card,
-        .gallery-grid img
-        `
-      );
-
-
-    cursorTargets.forEach(
-      (element) => {
-
-        element.addEventListener(
-          "mouseenter",
-          () => {
-
-            cursorRing.classList.add(
-              "hover"
-            );
-
-          }
-        );
-
-
-        element.addEventListener(
-          "mouseleave",
-          () => {
-
-            cursorRing.classList.remove(
-              "hover"
-            );
-
-          }
-        );
-
-      }
-    );
-
-  }
-
-
-  setupCursorTargets();
-
-
-  // -------------------------------------------------------
-  // Hide cursor while over lightbox
-  // -------------------------------------------------------
-
-  document.addEventListener(
-    "click",
-    () => {
-
-      const lightbox =
-        document.querySelector(
-          ".gallery-lightbox"
-        );
-
-
-      if (lightbox) {
-
-        cursorRing.classList.remove(
-          "hover"
-        );
-
-      }
-
-    }
+  // Interactive elements
+  const interactiveElements = document.querySelectorAll(
+    "a, button, .btn, .card, .leader-card, .activity-card, .batch-card, .cadet-card, .gallery-grid img"
   );
 
-}
+  interactiveElements.forEach((element) => {
 
+    element.addEventListener("mouseenter", () => {
+      cursor.classList.add("cursor-hover");
+    });
 
-// =========================================================
-// END OF SCRIPT
-// =========================================================
+    element.addEventListener("mouseleave", () => {
+      cursor.classList.remove("cursor-hover");
+    });
+  });
+
+  // Hide when leaving the website
+  document.addEventListener("mouseleave", () => {
+    cursor.classList.add("cursor-hidden");
+  });
+
+  document.addEventListener("mouseenter", () => {
+    cursor.classList.remove("cursor-hidden");
+  });
+
+})();
