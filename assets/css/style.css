@@ -2119,3 +2119,100 @@ body.lightbox-open {
     }
 
 }
+/* =========================================================
+   BATCH PAGE — STABILITY FIX
+========================================================= */
+
+.batch-hero {
+    position: relative;
+    width: 100%;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.batch-hero-content {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.batch-hero-content > img {
+    width: 120px !important;
+    height: auto !important;
+    max-width: 120px !important;
+    margin: 0 auto 25px !important;
+    object-fit: contain !important;
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+.batch-hero-content h1,
+.batch-hero-content h3,
+.batch-hero-content p,
+.batch-hero-content a {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+.batch-stats {
+    position: relative;
+    z-index: 20;
+}
+
+.batch-stats .card {
+    opacity: 1;
+    transform: none;
+}
+
+.cadet-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+}
+
+.cadet-card {
+    opacity: 1;
+    transform: none;
+}
+
+.cadet-card img {
+    width: 130px;
+    height: 130px;
+    max-width: 130px;
+    margin: 0 auto 20px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+
+    .batch-hero {
+        min-height: 75vh;
+        padding: 110px 20px 70px;
+    }
+
+    .batch-hero-content > img {
+        width: 90px !important;
+        max-width: 90px !important;
+    }
+
+    .batch-hero-content h1 {
+        font-size: 2.2rem;
+    }
+
+    .batch-stats {
+        margin-top: -40px;
+    }
+
+    .cadet-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+}
