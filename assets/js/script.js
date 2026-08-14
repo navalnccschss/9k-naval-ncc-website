@@ -240,3 +240,60 @@ galleryImages.forEach((image) => {
     );
   });
 });
+// =========================================================
+// CUSTOM GOLD CURSOR
+// =========================================================
+
+const cursorDot = document.createElement("div");
+cursorDot.className = "cursor-dot";
+
+const cursorRing = document.createElement("div");
+cursorRing.className = "cursor-ring";
+
+document.body.appendChild(cursorDot);
+document.body.appendChild(cursorRing);
+
+let mouseX = window.innerWidth / 2;
+let mouseY = window.innerHeight / 2;
+
+let ringX = mouseX;
+let ringY = mouseY;
+
+document.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+
+    cursorDot.style.left = mouseX + "px";
+    cursorDot.style.top = mouseY + "px";
+});
+
+function animateCursor() {
+    ringX += (mouseX - ringX) * 0.15;
+    ringY += (mouseY - ringY) * 0.15;
+
+    cursorRing.style.left = ringX + "px";
+    cursorRing.style.top = ringY + "px";
+
+    requestAnimationFrame(animateCursor);
+}
+
+animateCursor();
+
+
+// Cursor grows when hovering over clickable elements
+
+const cursorTargets = document.querySelectorAll(
+    "a, button, .btn, .card, .leader-card, .activity-card, .cadet-card, .gallery-grid img"
+);
+
+cursorTargets.forEach((element) => {
+
+    element.addEventListener("mouseenter", () => {
+        cursorRing.classList.add("hover");
+    });
+
+    element.addEventListener("mouseleave", () => {
+        cursorRing.classList.remove("hover");
+    });
+
+});
