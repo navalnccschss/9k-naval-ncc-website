@@ -1,23 +1,25 @@
 /* =========================================================
    9(K) NAVAL UNIT NCC
    ST. CATHERINE'S HSS PAYYAMPALLY
-   COMPLETE WEBSITE STYLESHEET
+   COMPLETE STYLE.CSS
 ========================================================= */
 
-/* -------------------------
-   GOOGLE FONT
-------------------------- */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* ==========================
+   GOOGLE FONTS
+========================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cinzel:wght@500;700&display=swap');
 
 
-/* -------------------------
+/* ==========================
    RESET
-------------------------- */
+========================== */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
     scroll-behavior: smooth;
 }
 
@@ -26,25 +28,25 @@ html {
 }
 
 body {
+    font-family: 'Poppins', sans-serif;
     background: #071428;
     color: #ffffff;
     overflow-x: hidden;
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
 img {
     max-width: 100%;
-    display: block;
 }
 
 a {
-    color: inherit;
+    text-decoration: none;
 }
 
 
-/* =========================================================
+/* ==========================
    LOADER
-========================================================= */
+========================== */
 
 #loader {
     position: fixed;
@@ -60,17 +62,20 @@ a {
 
 #loader h2 {
     color: #d4af37;
-    font-size: 1.4rem;
     text-align: center;
 }
 
 .wheel {
     width: 80px;
     height: 80px;
-    border: 6px solid rgba(255, 255, 255, 0.15);
+
+    border: 6px solid rgba(255,255,255,0.15);
     border-top: 6px solid #d4af37;
+
     border-radius: 50%;
+
     animation: spin 1s linear infinite;
+
     margin-bottom: 20px;
 }
 
@@ -81,79 +86,110 @@ a {
 }
 
 
-/* =========================================================
-   NAVBAR
-========================================================= */
+/* ==========================
+   HEADER
+========================== */
 
 header {
     position: fixed;
-    width: 100%;
+
     top: 0;
     left: 0;
+
+    width: 100%;
+
     z-index: 1000;
-    background: rgba(7, 20, 40, 0.78);
+
+    background: rgba(7,20,40,0.8);
+
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    border-bottom: 1px solid rgba(212, 175, 55, 0.12);
 }
 
 nav {
-    max-width: 1250px;
+    max-width: 1200px;
+
     margin: auto;
-    padding: 15px 30px;
+
+    padding: 18px 30px;
+
     display: flex;
+
     justify-content: space-between;
     align-items: center;
 }
 
+
+/* ==========================
+   LOGO
+========================== */
+
 .logo {
     display: flex;
     align-items: center;
+
     gap: 12px;
 }
 
 .logo img {
-    width: 48px;
-    height: 48px;
+    width: 50px;
+    height: 50px;
+
     object-fit: contain;
 }
 
 .logo h2 {
     color: #d4af37;
-    font-size: 1.35rem;
-    font-weight: 700;
+
+    font-size: 1.3rem;
+
+    font-weight: 600;
 }
+
+
+/* ==========================
+   NAVIGATION
+========================== */
 
 .nav-links {
     list-style: none;
+
     display: flex;
-    align-items: center;
-    gap: 25px;
+
+    gap: 28px;
 }
 
 .nav-links a {
-    text-decoration: none;
     color: #ffffff;
-    font-size: 0.95rem;
-    font-weight: 500;
-    position: relative;
-    transition: 0.3s ease;
-}
 
-.nav-links a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -7px;
-    width: 0;
-    height: 2px;
-    background: #d4af37;
-    transition: 0.3s ease;
+    text-decoration: none;
+
+    transition: 0.3s;
+
+    font-weight: 500;
+
+    position: relative;
 }
 
 .nav-links a:hover,
 .nav-links a.active {
     color: #d4af37;
+}
+
+.nav-links a::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -7px;
+
+    width: 0;
+    height: 2px;
+
+    background: #d4af37;
+
+    transition: 0.3s;
 }
 
 .nav-links a:hover::after,
@@ -162,617 +198,214 @@ nav {
 }
 
 
-/* =========================================================
+/* ==========================
+   MENU BUTTON
+========================== */
+
+.menu-btn {
+    display: none;
+
+    font-size: 1.8rem;
+
+    cursor: pointer;
+
+    color: #ffffff;
+
+    background: none;
+
+    border: none;
+}
+
+
+/* ==========================
    HERO
-========================================================= */
+========================== */
 
 .hero {
     min-height: 100vh;
+
     display: flex;
+
     justify-content: center;
     align-items: center;
+
     text-align: center;
+
     position: relative;
+
     overflow: hidden;
 
     background:
         linear-gradient(
-            rgba(0, 0, 0, 0.55),
-            rgba(0, 0, 0, 0.65)
+            rgba(0,0,0,0.55),
+            rgba(0,0,0,0.55)
         ),
         url('../images/hero1.jpg');
 
-    background-position: center;
     background-size: cover;
-    background-repeat: no-repeat;
+    background-position: center;
+
+    transition: 1s;
 }
 
 .overlay {
     position: absolute;
+
     inset: 0;
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(212, 175, 55, 0.08),
-            transparent 55%
-        );
+
     pointer-events: none;
 }
 
 .hero-content {
     position: relative;
+
     z-index: 5;
-    padding: 30px 20px;
-    animation: heroAppear 1.2s ease forwards;
+
+    padding: 20px;
+
+    animation: heroEntrance 1s ease;
 }
 
-@keyframes heroAppear {
+@keyframes heroEntrance {
+
     from {
         opacity: 0;
-        transform: translateY(40px);
+        transform: translateY(30px);
     }
 
     to {
         opacity: 1;
         transform: translateY(0);
     }
+
 }
 
 .hero-logo {
-    width: 125px;
-    height: 125px;
-    object-fit: contain;
-    margin: 0 auto 20px;
-    filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.25));
-}
+    width: 120px;
 
-.hero-content > p:first-of-type {
-    color: #dddddd;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    font-size: 0.8rem;
+    margin: 0 auto 20px;
 }
 
 .hero h1 {
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    margin: 12px 0;
-    font-weight: 800;
-    line-height: 1.15;
-    color: #ffffff;
+    font-family: 'Cinzel', serif;
+
+    font-size: 4rem;
+
+    margin: 15px 0;
 }
 
 .hero h3 {
-    font-size: clamp(1rem, 3vw, 1.5rem);
+    font-size: 1.6rem;
+
     font-weight: 400;
-    color: #eeeeee;
 }
 
 .tagline {
-    margin-top: 20px;
-    font-size: 1.05rem;
     color: #d4af37;
-    font-weight: 500;
-    letter-spacing: 1px;
+
+    margin-top: 20px;
+
+    font-size: 1.1rem;
 }
 
 
-/* =========================================================
+/* ==========================
    BUTTON
-========================================================= */
+========================== */
 
 .btn {
     display: inline-block;
+
     margin-top: 35px;
-    padding: 14px 32px;
-    background: #d4af37;
-    color: #071428;
-    text-decoration: none;
+
+    padding: 15px 35px;
+
     border-radius: 50px;
-    font-weight: 700;
-    transition: 0.4s ease;
-    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.18);
+
+    background: #d4af37;
+
+    color: #071428;
+
+    text-decoration: none;
+
+    font-weight: 600;
+
+    transition: 0.4s;
+
+    box-shadow:
+        0 8px 25px rgba(212,175,55,0.15);
 }
 
 .btn:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(212, 175, 55, 0.3);
+    transform: translateY(-6px);
+
+    background: #ffffff;
+
+    box-shadow:
+        0 12px 35px rgba(212,175,55,0.3);
 }
 
 
-/* =========================================================
+/* ==========================
    WAVES
-========================================================= */
+========================== */
 
 .waves {
     position: absolute;
-    bottom: -30px;
+
+    bottom: 0;
+
     left: 0;
+
     width: 100%;
-    height: 150px;
+
+    height: 160px;
+
     overflow: hidden;
-    z-index: 4;
 }
 
 .waves span {
     position: absolute;
-    left: -25%;
-    width: 150%;
-    height: 140px;
-    background: rgba(255, 255, 255, 0.07);
+
+    width: 200%;
+
+    height: 180px;
+
+    background: rgba(255,255,255,0.08);
+
     border-radius: 45%;
-    animation: wave 16s linear infinite;
+
+    animation: wave 18s linear infinite;
 }
 
 .waves span:nth-child(2) {
-    animation-duration: 20s;
+    animation-duration: 22s;
+
     opacity: 0.5;
 }
 
 .waves span:nth-child(3) {
-    animation-duration: 24s;
+    animation-duration: 26s;
+
     opacity: 0.3;
 }
 
 @keyframes wave {
+
     from {
-        transform: translateX(-10%) rotate(0deg);
+        transform: translateX(-30%);
     }
 
     to {
-        transform: translateX(10%) rotate(360deg);
+        transform: translateX(0);
     }
+
 }
 
 
-/* =========================================================
-   STATS
-========================================================= */
-
-.stats {
-    max-width: 1200px;
-    margin: -70px auto 0;
-    padding: 0 30px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-    position: relative;
-    z-index: 10;
-}
-
-.card {
-    background: rgba(255, 255, 255, 0.07);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    padding: 35px 25px;
-    border-radius: 20px;
-    text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: 0.4s ease;
-}
-
-.card:hover {
-    transform: translateY(-10px);
-    border-color: rgba(212, 175, 55, 0.5);
-}
-
-.card h2 {
-    color: #d4af37;
-    margin-bottom: 8px;
-    font-size: 1.8rem;
-}
-
-.card p {
-    color: #dddddd;
-}
-
-
-/* =========================================================
-   GENERAL SECTIONS
-========================================================= */
-
-.section {
-    max-width: 1200px;
-    margin: auto;
-    padding: 110px 30px;
-}
-
-.title {
-    text-align: center;
-    margin-bottom: 50px;
-    color: #d4af37;
-    font-size: clamp(1.8rem, 4vw, 2.5rem);
-    font-weight: 700;
-    position: relative;
-}
-
-.title::after {
-    content: "";
-    display: block;
-    width: 70px;
-    height: 3px;
-    background: #d4af37;
-    margin: 15px auto 0;
-    border-radius: 10px;
-}
-
-.section > p {
-    max-width: 900px;
-    margin: 0 auto 25px;
-    text-align: center;
-    color: #d7d7d7;
-    font-size: 1rem;
-}
-
-
-/* =========================================================
-   LEADERSHIP
-========================================================= */
-
-.leaders {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 35px;
-}
-
-.leader-card {
-    background: rgba(255, 255, 255, 0.06);
-    padding: 40px;
-    border-radius: 20px;
-    text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    transition: 0.4s ease;
-}
-
-.leader-card:hover {
-    transform: translateY(-10px);
-    border-color: rgba(212, 175, 55, 0.45);
-}
-
-.photo {
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid #d4af37;
-    margin: 0 auto 20px;
-}
-
-.leader-card h3 {
-    color: #d4af37;
-    margin-bottom: 8px;
-}
-
-.leader-card p {
-    color: #dddddd;
-}
-
-
-/* =========================================================
-   ACTIVITIES
-========================================================= */
-
-.activity-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 25px;
-}
-
-.activity-card {
-    background: rgba(255, 255, 255, 0.06);
-    padding: 35px 25px;
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    transition: 0.4s ease;
-}
-
-.activity-card:hover {
-    transform: translateY(-10px);
-    border-color: rgba(212, 175, 55, 0.45);
-}
-
-.activity-card h3 {
-    color: #d4af37;
-    margin-bottom: 12px;
-}
-
-.activity-card p {
-    color: #dddddd;
-    font-size: 0.95rem;
-}
-
-
-/* =========================================================
-   GALLERY
-========================================================= */
-
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-.gallery-grid img {
-    width: 100%;
-    height: 280px;
-    object-fit: contain;
-    background: #0f2342;
-    border-radius: 18px;
-    padding: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    transition: 0.4s ease;
-    cursor: pointer;
-}
-
-.gallery-grid img:hover {
-    transform: scale(1.03);
-    border-color: #d4af37;
-}
-
-
-/* =========================================================
-   BATCH / CADET ROSTER
-========================================================= */
-
-.batch-container {
-    max-width: 1250px;
-    margin: auto;
-    padding: 120px 30px 80px;
-}
-
-.batch-header {
-    text-align: center;
-    margin-bottom: 60px;
-}
-
-.batch-header h1 {
-    color: #d4af37;
-    font-size: clamp(2rem, 5vw, 3.2rem);
-    margin-bottom: 10px;
-}
-
-.batch-header p {
-    color: #cccccc;
-}
-
-
-/* =========================================================
-   FIXED RANK HEADINGS
-   POC + LC
-========================================================= */
-
-.rank-title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 25px;
-
-    width: 100%;
-    color: #d4af37;
-
-    margin: 70px 0 40px;
-
-    font-size: 2rem;
-    font-weight: 700;
-    text-align: center;
-
-    line-height: 1.3;
-}
-
-/*
-   IMPORTANT:
-   Lines are normal flex elements.
-   They stay BESIDE the text and never cross it.
-*/
-
-.rank-title::before,
-.rank-title::after {
-    content: "";
-    display: block;
-
-    width: 100px;
-    height: 2px;
-
-    flex: 0 0 100px;
-
-    background: #d4af37;
-    opacity: 0.8;
-}
-
-
-/* =========================================================
-   CADET GRID
-========================================================= */
-
-.cadet-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-}
-
-.cadet-card {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 20px;
-
-    padding: 30px 20px;
-
-    text-align: center;
-
-    transition:
-        transform 0.4s ease,
-        border-color 0.4s ease,
-        box-shadow 0.4s ease;
-}
-
-.cadet-card:hover {
-    transform: translateY(-8px);
-
-    border-color: rgba(212, 175, 55, 0.6);
-
-    box-shadow:
-        0 15px 40px rgba(0, 0, 0, 0.25);
-}
-
-.cadet-card img {
-    width: 150px;
-    height: 150px;
-
-    border-radius: 50%;
-
-    object-fit: cover;
-
-    border: 4px solid #d4af37;
-
-    margin: 0 auto 20px;
-}
-
-.cadet-card h3 {
-    color: #d4af37;
-    font-size: 1.15rem;
-    margin-bottom: 5px;
-}
-
-.cadet-card p {
-    color: #dddddd;
-    font-size: 0.9rem;
-}
-
-
-/* =========================================================
-   CONTACT
-========================================================= */
-
-.contact-box {
-    max-width: 800px;
-    margin: auto;
-
-    background: rgba(255, 255, 255, 0.06);
-
-    padding: 45px 30px;
-
-    border-radius: 20px;
-
-    text-align: center;
-
-    border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.contact-box h3 {
-    color: #d4af37;
-    margin-bottom: 15px;
-}
-
-.contact-box p {
-    margin: 10px 0;
-    color: #dddddd;
-}
-
-.contact-box a {
-    color: #d4af37;
-    text-decoration: none;
-    transition: 0.3s ease;
-}
-
-.contact-box a:hover {
-    color: #ffffff;
-}
-
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-footer {
-    text-align: center;
-    padding: 45px 20px;
-    background: #04101f;
-    border-top: 1px solid rgba(212, 175, 55, 0.1);
-}
-
-footer p {
-    margin: 8px;
-    color: #cccccc;
-}
-
-footer a {
-    color: #d4af37;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-footer a:hover {
-    color: #ffffff;
-}
-
-
-/* =========================================================
-   SCROLL REVEAL
-========================================================= */
-
-.section,
-.card,
-.leader-card,
-.activity-card,
-.cadet-card,
-.gallery-grid img {
-    opacity: 0;
-    transform: translateY(50px);
-    transition:
-        opacity 0.8s ease,
-        transform 0.8s ease;
-}
-
-.show {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
-}
-
-
-/* =========================================================
-   BACK TO TOP
-========================================================= */
-
-.top-btn {
-    position: fixed;
-
-    right: 25px;
-    bottom: 25px;
-
-    width: 55px;
-    height: 55px;
-
-    border: none;
-    border-radius: 50%;
-
-    background: #d4af37;
-    color: #071428;
-
-    font-size: 1.5rem;
-    font-weight: 700;
-
-    cursor: pointer;
-
-    opacity: 0;
-    transform: scale(0);
-
-    transition: 0.4s ease;
-
-    z-index: 999;
-}
-
-.top-btn:hover {
-    transform: scale(1.1);
-}
-
-.show-top {
-    opacity: 1;
-    transform: scale(1);
-}
-
-
-/* =========================================================
-   FLOATING STARS
-========================================================= */
+/* ==========================
+   STARS
+========================== */
 
 .star {
     position: absolute;
@@ -784,294 +417,651 @@ footer a:hover {
 
     border-radius: 50%;
 
-    animation:
-        twinkle infinite ease-in-out;
+    animation: twinkle infinite ease-in-out;
 
     pointer-events: none;
 }
 
 @keyframes twinkle {
 
-    0%,
-    100% {
+    0%,100% {
         opacity: 0.2;
+
         transform: scale(1);
     }
 
     50% {
         opacity: 1;
+
         transform: scale(2);
     }
+
 }
 
 
-/* =========================================================
-   MOBILE MENU
-========================================================= */
+/* ==========================
+   SECTIONS
+========================== */
 
-.menu-btn {
-    display: none;
+.section {
+    max-width: 1200px;
 
-    background: transparent;
-    border: none;
+    margin: auto;
+
+    padding: 60px 30px;
+}
+
+.title {
+    text-align: center;
+
+    margin-bottom: 50px;
 
     color: #d4af37;
 
-    font-size: 1.8rem;
+    font-size: 2.3rem;
+
+    font-family: 'Cinzel', serif;
+}
+
+.title::after {
+    content: "";
+
+    display: block;
+
+    width: 70px;
+    height: 3px;
+
+    margin: 15px auto 0;
+
+    background: #d4af37;
+
+    border-radius: 20px;
+}
+
+
+/* ==========================
+   STATS
+========================== */
+
+.stats {
+    max-width: 1200px;
+
+    margin: -80px auto 0;
+
+    padding: 0 30px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(250px,1fr));
+
+    gap: 25px;
+
+    position: relative;
+
+    z-index: 10;
+}
+
+.card {
+    background: rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(20px);
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+
+    padding: 35px;
+
+    border-radius: 25px;
+
+    text-align: center;
+
+    transition: 0.4s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+
+    border-color:
+        rgba(212,175,55,0.4);
+}
+
+.card h2 {
+    color: #d4af37;
+
+    margin-bottom: 10px;
+}
+
+
+/* ==========================
+   LEADERS
+========================== */
+
+.leaders {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(300px,1fr));
+
+    gap: 35px;
+}
+
+.leader-card {
+    background: rgba(255,255,255,0.06);
+
+    backdrop-filter: blur(20px);
+
+    padding: 40px;
+
+    border-radius: 25px;
+
+    text-align: center;
+
+    transition: 0.4s;
+}
+
+.leader-card:hover {
+    transform: translateY(-10px);
+
+    border-color:
+        rgba(212,175,55,0.4);
+}
+
+.photo {
+    width: 150px;
+    height: 150px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border: 4px solid #d4af37;
+
+    margin: 0 auto 20px;
+
+    display: block;
+}
+
+
+/* ==========================
+   ACTIVITIES
+========================== */
+
+.activity-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(250px,1fr));
+
+    gap: 25px;
+}
+
+.activity-card {
+    background: rgba(255,255,255,0.06);
+
+    backdrop-filter: blur(20px);
+
+    border-radius: 25px;
+
+    padding: 35px;
+
+    transition: 0.4s;
+}
+
+.activity-card:hover {
+    transform: translateY(-10px);
+
+    border-color:
+        rgba(212,175,55,0.4);
+}
+
+
+/* ==========================
+   TIMELINE
+========================== */
+
+.timeline {
+    max-width: 850px;
+
+    margin: auto;
+}
+
+.timeline-item {
+    background:
+        rgba(255,255,255,0.06);
+
+    padding: 30px;
+
+    border-left: 5px solid #d4af37;
+
+    border-radius: 20px;
+
+    margin-bottom: 30px;
+
+    backdrop-filter: blur(20px);
+
+    transition: 0.4s;
+}
+
+.timeline-item:hover {
+    transform: translateX(5px);
+}
+
+.timeline-item h3 {
+    color: #d4af37;
+
+    margin-bottom: 8px;
+}
+
+
+/* ==========================
+   GALLERY
+========================== */
+
+.gallery-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(300px,1fr));
+
+    gap: 20px;
+}
+
+.gallery-grid img {
+    width: 100%;
+
+    aspect-ratio: 4 / 3;
+
+    /*
+       CONTAIN prevents your photos
+       from being unnecessarily cropped.
+    */
+    object-fit: contain;
+
+    background: #0f2342;
+
+    padding: 8px;
+
+    border-radius: 20px;
 
     cursor: pointer;
+
+    transition: 0.4s;
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.03);
+
+    border-color: #d4af37;
+}
+
+
+/* ==========================
+   CONTACT
+========================== */
+
+.contact-box {
+    background:
+        rgba(255,255,255,0.06);
+
+    backdrop-filter: blur(20px);
+
+    padding: 40px;
+
+    border-radius: 25px;
+
+    text-align: center;
+}
+
+.contact-box h3 {
+    color: #d4af37;
+
+    margin-bottom: 15px;
+}
+
+.contact-box a {
+    color: #d4af37;
+
+    text-decoration: none;
+
+    transition: 0.3s;
+}
+
+.contact-box a:hover {
+    color: #ffffff;
+}
+
+
+/* ==========================
+   FOOTER
+========================== */
+
+footer {
+    text-align: center;
+
+    padding: 45px 20px;
+
+    background: #04101f;
+}
+
+footer p {
+    margin: 10px 0;
+}
+
+footer a {
+    color: #d4af37;
+
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #ffffff;
 }
 
 
 /* =========================================================
-   RESPONSIVE — TABLET
+   BATCHES
 ========================================================= */
 
-@media (max-width: 1000px) {
+.batch-subtitle {
+    text-align: center;
 
-    .activity-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    max-width: 800px;
 
-    .cadet-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    margin: 0 auto 50px;
 
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    color: #cccccc;
+}
 
-    .nav-links {
-        gap: 15px;
-    }
+.batch-grid {
+    display: grid;
 
-    .nav-links a {
-        font-size: 0.85rem;
-    }
+    grid-template-columns:
+        repeat(auto-fit,minmax(340px,1fr));
+
+    gap: 35px;
+}
+
+.batch-card {
+    background:
+        rgba(255,255,255,0.06);
+
+    backdrop-filter: blur(20px);
+
+    border-radius: 25px;
+
+    overflow: hidden;
+
+    transition: 0.4s;
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+}
+
+.batch-card:hover {
+    transform: translateY(-12px);
+
+    box-shadow:
+        0 15px 35px rgba(212,175,55,0.25);
+}
+
+.batch-image {
+    height: 260px;
+
+    overflow: hidden;
+}
+
+.batch-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: 0.5s;
+}
+
+.batch-card:hover
+.batch-image img {
+    transform: scale(1.08);
+}
+
+.batch-content {
+    padding: 30px;
+
+    text-align: center;
+}
+
+.batch-badge {
+    display: inline-block;
+
+    background: #d4af37;
+
+    color: #071428;
+
+    padding: 8px 18px;
+
+    border-radius: 30px;
+
+    font-size: 0.9rem;
+
+    font-weight: 600;
+
+    margin-bottom: 20px;
+}
+
+.batch-content h3 {
+    color: #d4af37;
+
+    margin-bottom: 15px;
+}
+
+.batch-content p {
+    margin-bottom: 30px;
+
+    color: #dddddd;
 }
 
 
 /* =========================================================
-   RESPONSIVE — MOBILE
+   RANK CARDS
 ========================================================= */
 
-@media (max-width: 768px) {
+.rank-card {
+    border: 2px solid #d4af37;
 
-    nav {
-        padding: 12px 18px;
-    }
+    background:
+        linear-gradient(
+            135deg,
+            rgba(212,175,55,0.18),
+            rgba(255,255,255,0.06)
+        );
+}
 
-    .logo h2 {
-        font-size: 1.05rem;
-    }
-
-    .logo img {
-        width: 42px;
-        height: 42px;
-    }
-
-    .menu-btn {
-        display: block;
-    }
-
-    .nav-links {
-        position: absolute;
-
-        top: 100%;
-        left: 0;
-
-        width: 100%;
-
-        display: none;
-
-        flex-direction: column;
-
-        gap: 0;
-
-        background: rgba(7, 20, 40, 0.97);
-
-        padding: 10px 0;
-
-        border-bottom: 1px solid rgba(212, 175, 55, 0.15);
-    }
-
-    .nav-links.show-menu {
-        display: flex;
-    }
-
-    .nav-links li {
-        width: 100%;
-        text-align: center;
-    }
-
-    .nav-links a {
-        display: block;
-        padding: 13px;
-        font-size: 0.95rem;
-    }
-
-    .hero {
-        min-height: 100svh;
-    }
-
-    .hero-logo {
-        width: 100px;
-        height: 100px;
-    }
-
-    .hero h1 {
-        font-size: 2.4rem;
-    }
-
-    .hero h3 {
-        font-size: 1rem;
-    }
-
-    .tagline {
-        font-size: 0.9rem;
-    }
-
-    .stats {
-        grid-template-columns: 1fr;
-        margin-top: -40px;
-    }
-
-    .section {
-        padding: 80px 20px;
-    }
-
-    .leaders {
-        grid-template-columns: 1fr;
-    }
-
-    .activity-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .gallery-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .gallery-grid img {
-        height: auto;
-        min-height: 220px;
-        max-height: 500px;
-    }
-
-    .cadet-grid {
-        grid-template-columns: 1fr;
-    }
-
-
-    /* -------------------------
-       POC / LC HEADING MOBILE
-    ------------------------- */
-
-    .rank-title {
-        font-size: 1.35rem;
-        gap: 12px;
-
-        margin: 55px 0 30px;
-    }
-
-    .rank-title::before,
-    .rank-title::after {
-        width: 35px;
-        flex: 0 0 35px;
-    }
-
-
-    .batch-container {
-        padding: 100px 18px 60px;
-    }
-
-    .cadet-card {
-        padding: 28px 18px;
-    }
-
-    .cadet-card img {
-        width: 135px;
-        height: 135px;
-    }
-
-    .top-btn {
-        right: 18px;
-        bottom: 18px;
-
-        width: 50px;
-        height: 50px;
-    }
+.rank-card:hover {
+    box-shadow:
+        0 20px 40px
+        rgba(212,175,55,0.35);
 }
 
 
 /* =========================================================
-   VERY SMALL PHONES
+   POC / LC RANK HEADINGS
+   FIXED — LINES DO NOT CROSS TEXT
 ========================================================= */
 
-@media (max-width: 450px) {
+.rank-title {
+    display: flex;
 
-    .logo h2 {
-        font-size: 0.9rem;
-    }
+    align-items: center;
 
-    .hero h1 {
-        font-size: 2rem;
-    }
+    justify-content: center;
 
-    .hero h3 {
-        font-size: 0.9rem;
-    }
+    gap: 25px;
 
-    .hero-logo {
-        width: 85px;
-        height: 85px;
-    }
+    width: 100%;
 
-    .btn {
-        padding: 12px 24px;
-        font-size: 0.9rem;
-    }
+    text-align: center;
 
-    .rank-title {
-        font-size: 1.05rem;
-        gap: 8px;
-    }
+    color: #d4af37;
 
-    .rank-title::before,
-    .rank-title::after {
-        width: 20px;
-        flex: 0 0 20px;
-    }
+    margin: 70px 0 40px;
 
-    .title {
-        font-size: 1.8rem;
-    }
+    font-size: 2rem;
+
+    font-family: 'Cinzel', serif;
+
+    font-weight: 700;
+
+    line-height: 1.3;
 }
+
+
+/*
+   The lines are FLEX ITEMS.
+   This prevents them from crossing
+   through POC / LC text.
+*/
+
+.rank-title::before,
+.rank-title::after {
+    content: "";
+
+    display: block;
+
+    width: 100px;
+
+    height: 2px;
+
+    flex: 0 0 100px;
+
+    background: #d4af37;
+
+    opacity: 0.8;
+}
+
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+.section,
+.card,
+.leader-card,
+.activity-card,
+.timeline-item,
+.batch-card,
+.rank-card,
+.gallery-grid img {
+    opacity: 0;
+
+    transform: translateY(50px);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+.show {
+    opacity: 1 !important;
+
+    transform:
+        translateY(0) !important;
+}
+
+
+/* =========================================================
+   BACK TO TOP
+========================================================= */
+
+.top-btn {
+    position: fixed;
+
+    right: 25px;
+
+    bottom: 25px;
+
+    width: 55px;
+    height: 55px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #d4af37;
+
+    color: #071428;
+
+    font-size: 1.5rem;
+
+    cursor: pointer;
+
+    opacity: 0;
+
+    transform: scale(0);
+
+    transition: 0.4s;
+
+    z-index: 999;
+}
+
+.top-btn:hover {
+    transform: scale(1.1);
+}
+
+.show-top {
+    opacity: 1;
+
+    transform: scale(1);
+}
+
+
 /* =========================================================
    CUSTOM GOLD CURSOR
 ========================================================= */
 
 .cursor-dot {
     position: fixed;
+
     width: 7px;
     height: 7px;
+
     background: #d4af37;
+
     border-radius: 50%;
+
     pointer-events: none;
+
     z-index: 999999;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 0 12px #d4af37, 0 0 25px rgba(212, 175, 55, 0.5);
+
+    transform:
+        translate(-50%, -50%);
+
+    box-shadow:
+        0 0 12px #d4af37,
+        0 0 25px rgba(212,175,55,0.5);
 }
 
 .cursor-ring {
     position: fixed;
+
     width: 32px;
     height: 32px;
-    border: 2px solid rgba(212, 175, 55, 0.7);
+
+    border:
+        2px solid rgba(212,175,55,0.7);
+
     border-radius: 50%;
+
     pointer-events: none;
+
     z-index: 999998;
-    transform: translate(-50%, -50%);
+
+    transform:
+        translate(-50%, -50%);
+
     transition:
         width 0.25s ease,
         height 0.25s ease,
@@ -1082,12 +1072,197 @@ footer a:hover {
 .cursor-ring.hover {
     width: 50px;
     height: 50px;
-    background: rgba(212, 175, 55, 0.08);
+
+    background:
+        rgba(212,175,55,0.08);
+
     border-color: #d4af37;
 }
 
-/* Hide custom cursor on touch devices */
-@media (hover: none), (pointer: coarse) {
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:900px) {
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero h3 {
+        font-size: 1.1rem;
+    }
+
+    .hero-logo {
+        width: 90px;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+
+        top: 85px;
+
+        left: 0;
+
+        width: 100%;
+
+        background: #071428;
+
+        flex-direction: column;
+
+        text-align: center;
+
+        gap: 0;
+
+        display: none;
+    }
+
+    .nav-links.show-menu {
+        display: flex;
+    }
+
+    .nav-links li {
+        width: 100%;
+
+        padding: 18px;
+
+        border-bottom:
+            1px solid
+            rgba(255,255,255,0.08);
+    }
+
+    .nav-links a::after {
+        display: none;
+    }
+
+    .batch-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-grid {
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media(max-width:768px) {
+
+    .section {
+        padding: 60px 20px;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-grid img {
+        aspect-ratio: auto;
+
+        /*
+           Keep full image visible on phones.
+        */
+        height: auto;
+
+        max-height: 500px;
+
+        object-fit: contain;
+    }
+
+    .batch-image {
+        height: 220px;
+    }
+
+
+    /* POC / LC */
+
+    .rank-title {
+        font-size: 1.35rem;
+
+        gap: 12px;
+
+        margin: 55px 0 30px;
+    }
+
+    .rank-title::before,
+    .rank-title::after {
+        width: 40px;
+
+        flex: 0 0 40px;
+    }
+
+
+    .cadet-card img {
+        max-width: 150px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media(max-width:450px) {
+
+    .logo h2 {
+        font-size: 1rem;
+    }
+
+    .logo img {
+        width: 42px;
+        height: 42px;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero h3 {
+        font-size: 0.95rem;
+    }
+
+    .hero-logo {
+        width: 80px;
+    }
+
+    .btn {
+        padding: 12px 25px;
+    }
+
+    .rank-title {
+        font-size: 1.05rem;
+
+        gap: 8px;
+    }
+
+    .rank-title::before,
+    .rank-title::after {
+        width: 20px;
+
+        flex: 0 0 20px;
+    }
+}
+
+
+/* =========================================================
+   DISABLE CUSTOM CURSOR ON TOUCH DEVICES
+========================================================= */
+
+@media(hover:none), (pointer:coarse) {
+
     .cursor-dot,
     .cursor-ring {
         display: none;
