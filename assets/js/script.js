@@ -33,7 +33,7 @@ if (menuBtn && navLinks) {
 // SCROLL REVEAL
 // ==============================
 const reveals = document.querySelectorAll(
-  ".section, .card, .leader-card, .activity-card, .gallery-grid img, .timeline-item"
+    ".section, .card, .leader-card, .activity-card, .timeline-item, .batch-card, .rank-card, .gallery-grid img"
 );
 
 function revealOnScroll() {
