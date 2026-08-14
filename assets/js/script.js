@@ -38,18 +38,13 @@ const navLinks = document.querySelector(".nav-links");
 if (menuBtn && navLinks) {
 
   menuBtn.addEventListener("click", () => {
-
     navLinks.classList.toggle("show-menu");
-
   });
-
 
   document.querySelectorAll(".nav-links a").forEach((link) => {
 
     link.addEventListener("click", () => {
-
       navLinks.classList.remove("show-menu");
-
     });
 
   });
@@ -63,9 +58,9 @@ if (menuBtn && navLinks) {
 
 const reveals = document.querySelectorAll(
   ".section, .card, .leader-card, .activity-card, " +
-  ".timeline-item, .batch-card, .rank-card, .gallery-grid img"
+  ".timeline-item, .batch-card, .rank-card, " +
+  ".cadet-card, .gallery-grid img"
 );
-
 
 function revealOnScroll() {
 
@@ -83,7 +78,6 @@ function revealOnScroll() {
   });
 
 }
-
 
 window.addEventListener(
   "scroll",
@@ -103,7 +97,6 @@ const sections =
 
 const navItems =
   document.querySelectorAll(".nav-links a");
-
 
 function updateActiveNavigation() {
 
@@ -129,7 +122,6 @@ function updateActiveNavigation() {
 
   });
 
-
   navItems.forEach((link) => {
 
     link.classList.remove("active");
@@ -147,7 +139,6 @@ function updateActiveNavigation() {
 
 }
 
-
 window.addEventListener(
   "scroll",
   updateActiveNavigation,
@@ -164,21 +155,18 @@ updateActiveNavigation();
 const counters =
   document.querySelectorAll(".card h2");
 
-
 counters.forEach((counter) => {
 
   const text =
     counter.innerText.trim();
 
-
   /*
-     Only animate pure numbers.
+    Only pure numbers animate.
 
-     This means:
-     50       → animates
-     2024     → animates
-     9(K)     → stays normal
-     19 Jan   → stays normal
+    50       → animates
+    2024     → animates
+    9(K)     → stays normal
+    19 Jan   → stays normal
   */
 
   if (!isNaN(text) && text !== "") {
@@ -188,12 +176,10 @@ counters.forEach((counter) => {
 
     counter.innerText = "0";
 
-
     function updateCounter() {
 
       const current =
         parseInt(counter.innerText, 10);
-
 
       if (current < target) {
 
@@ -223,7 +209,6 @@ counters.forEach((counter) => {
 
     }
 
-
     updateCounter();
 
   }
@@ -250,7 +235,6 @@ topBtn.setAttribute(
 
 document.body.appendChild(topBtn);
 
-
 function updateTopButton() {
 
   if (window.scrollY > 400) {
@@ -269,24 +253,19 @@ function updateTopButton() {
 
 }
 
-
 window.addEventListener(
   "scroll",
   updateTopButton,
   { passive: true }
 );
 
-
 topBtn.addEventListener(
   "click",
   () => {
 
     window.scrollTo({
-
       top: 0,
-
       behavior: "smooth"
-
     });
 
   }
@@ -300,7 +279,6 @@ topBtn.addEventListener(
 const hero =
   document.querySelector(".hero");
 
-
 if (hero) {
 
   for (let i = 0; i < 40; i++) {
@@ -310,22 +288,17 @@ if (hero) {
 
     star.classList.add("star");
 
-
     star.style.left =
       Math.random() * 100 + "%";
-
 
     star.style.top =
       Math.random() * 100 + "%";
 
-
     star.style.animationDuration =
       Math.random() * 4 + 2 + "s";
 
-
     star.style.animationDelay =
       Math.random() * 3 + "s";
-
 
     hero.appendChild(star);
 
@@ -348,14 +321,11 @@ const heroImages = [
 
 ];
 
-
 let currentHero = 0;
-
 
 function changeHero() {
 
   if (!hero) return;
-
 
   hero.style.background =
     `
@@ -366,17 +336,13 @@ function changeHero() {
     url("${heroImages[currentHero]}")
     `;
 
-
   hero.style.backgroundSize =
     "cover";
-
 
   hero.style.backgroundPosition =
     "center";
 
-
   currentHero++;
-
 
   if (
     currentHero >=
@@ -389,9 +355,7 @@ function changeHero() {
 
 }
 
-
 changeHero();
-
 
 setInterval(
   changeHero,
@@ -403,284 +367,202 @@ setInterval(
 // GALLERY LIGHTBOX
 // =========================================================
 
-const galleryImages =
-  document.querySelectorAll(
-    ".gallery-grid img"
-  );
+const galleryImages = document.querySelectorAll(".gallery-grid img");
 
+let activeLightbox = null;
 
 function openLightbox(image) {
 
-  const overlay =
-    document.createElement("div");
+  // Prevent duplicate lightboxes
+  if (activeLightbox) return;
 
+  const overlay = document.createElement("div");
 
-  overlay.className =
-    "gallery-lightbox";
-
+  overlay.className = "gallery-lightbox";
 
   overlay.innerHTML = `
-
     <button
       class="lightbox-close"
+      type="button"
       aria-label="Close image"
     >
       ×
     </button>
 
-    <img
-      src="${image.src}"
-      alt="${image.alt || "Gallery image"}"
-    >
-
+    <div class="lightbox-content">
+      <img
+        src="${image.currentSrc || image.src}"
+        alt="${image.alt || "Gallery image"}"
+      >
+    </div>
   `;
 
+  document.body.appendChild(overlay);
 
-  document.body.appendChild(
-    overlay
-  );
+  activeLightbox = overlay;
 
+  // Prevent background scrolling while lightbox is open
+  document.body.classList.add("lightbox-open");
 
-  document.body.style.overflow =
-    "hidden";
-
+  // Small delay for opening animation
+  requestAnimationFrame(() => {
+    overlay.classList.add("lightbox-visible");
+  });
 
   const closeButton =
-    overlay.querySelector(
-      ".lightbox-close"
-    );
-
+    overlay.querySelector(".lightbox-close");
 
   function closeLightbox() {
 
-    overlay.remove();
+    if (!activeLightbox) return;
 
-    document.body.style.overflow =
-      "";
+    overlay.classList.remove("lightbox-visible");
 
+    setTimeout(() => {
+
+      if (overlay.parentNode) {
+        overlay.remove();
+      }
+
+      activeLightbox = null;
+
+      // VERY IMPORTANT:
+      // Restore normal page scrolling
+      document.body.classList.remove("lightbox-open");
+
+    }, 250);
   }
 
+  closeButton.addEventListener("click", (event) => {
 
-  closeButton.addEventListener(
-    "click",
-    (event) => {
+    event.preventDefault();
+    event.stopPropagation();
 
-      event.stopPropagation();
+    closeLightbox();
+
+  });
+
+  // Click outside image closes lightbox
+  overlay.addEventListener("click", (event) => {
+
+    if (
+      event.target === overlay ||
+      event.target.classList.contains("lightbox-content")
+    ) {
 
       closeLightbox();
 
     }
-  );
 
+  });
 
-  overlay.addEventListener(
-    "click",
-    (event) => {
+  // ESC closes lightbox
+  function escapeHandler(event) {
 
-      if (
-        event.target === overlay
-      ) {
+    if (event.key === "Escape") {
 
-        closeLightbox();
+      closeLightbox();
 
-      }
+      document.removeEventListener(
+        "keydown",
+        escapeHandler
+      );
 
     }
-  );
 
+  }
 
   document.addEventListener(
     "keydown",
-    function escapeHandler(event) {
-
-      if (event.key === "Escape") {
-
-        closeLightbox();
-
-        document.removeEventListener(
-          "keydown",
-          escapeHandler
-        );
-
-      }
-
-    }
+    escapeHandler
   );
 
 }
 
+galleryImages.forEach((image) => {
 
-galleryImages.forEach(
-  (image) => {
+  image.addEventListener("click", (event) => {
 
-    image.addEventListener(
-      "click",
-      () => {
+    event.preventDefault();
 
-        openLightbox(image);
+    openLightbox(image);
 
-      }
-    );
+  });
 
+});
+
+
+// =========================================================
+// PREMIUM NCC CURSOR
+// =========================================================
+
+(() => {
+
+  // Disable custom cursor on touch devices
+  if (
+    window.matchMedia("(pointer: coarse)").matches
+  ) {
+    return;
   }
-);
 
-
-// =========================================================
-// FUTURISTIC NCC CURSOR
-// =========================================================
-
-/*
-   The custom cursor is only enabled
-   on devices with a real mouse.
-
-   Phones/tablets automatically use
-   their normal touch interaction.
-*/
-
-
-const hasMouse =
-  window.matchMedia(
-    "(hover: hover) and (pointer: fine)"
-  ).matches;
-
-
-if (hasMouse) {
-
-
-  // -------------------------------------------------------
-  // Cursor elements
-  // -------------------------------------------------------
-
-  const cursorDot =
+  const cursor =
     document.createElement("div");
 
-  cursorDot.className =
-    "cursor-dot";
+  cursor.className =
+    "premium-cursor";
 
-
-  const cursorRing =
+  const core =
     document.createElement("div");
 
-  cursorRing.className =
+  core.className =
+    "cursor-core";
+
+  const ring =
+    document.createElement("div");
+
+  ring.className =
     "cursor-ring";
 
+  cursor.appendChild(ring);
+  cursor.appendChild(core);
 
-  document.body.appendChild(
-    cursorDot
-  );
-
-  document.body.appendChild(
-    cursorRing
-  );
+  document.body.appendChild(cursor);
 
 
-  // -------------------------------------------------------
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+
+  let currentX = mouseX;
+  let currentY = mouseY;
+
+
   // Mouse position
-  // -------------------------------------------------------
-
-  let mouseX =
-    window.innerWidth / 2;
-
-  let mouseY =
-    window.innerHeight / 2;
-
-
-  let ringX = mouseX;
-  let ringY = mouseY;
-
-
-  // -------------------------------------------------------
-  // Mouse movement
-  // -------------------------------------------------------
-
-  document.addEventListener(
+  window.addEventListener(
     "mousemove",
     (event) => {
 
-      mouseX =
-        event.clientX;
+      mouseX = event.clientX;
+      mouseY = event.clientY;
 
-      mouseY =
-        event.clientY;
-
-
-      cursorDot.style.left =
-        mouseX + "px";
-
-      cursorDot.style.top =
-        mouseY + "px";
-
-
-      /*
-         Small trail particles.
-
-         They appear only sometimes,
-         so the effect stays elegant.
-      */
-
-      if (
-        Math.random() > 0.72
-      ) {
-
-        const trail =
-          document.createElement(
-            "div"
-          );
-
-
-        trail.className =
-          "cursor-trail";
-
-
-        trail.style.left =
-          mouseX + "px";
-
-
-        trail.style.top =
-          mouseY + "px";
-
-
-        document.body.appendChild(
-          trail
-        );
-
-
-        setTimeout(() => {
-
-          trail.remove();
-
-        }, 700);
-
-      }
-
-    }
+    },
+    { passive: true }
   );
 
 
-  // -------------------------------------------------------
-  // Smooth cursor ring
-  // -------------------------------------------------------
-
+  // Smooth cursor movement
   function animateCursor() {
 
-    ringX +=
-      (mouseX - ringX) *
-      0.12;
+    currentX +=
+      (mouseX - currentX) * 0.20;
 
+    currentY +=
+      (mouseY - currentY) * 0.20;
 
-    ringY +=
-      (mouseY - ringY) *
-      0.12;
+    cursor.style.left =
+      currentX + "px";
 
-
-    cursorRing.style.left =
-      ringX + "px";
-
-
-    cursorRing.style.top =
-      ringY + "px";
-
+    cursor.style.top =
+      currentY + "px";
 
     requestAnimationFrame(
       animateCursor
@@ -688,97 +570,78 @@ if (hasMouse) {
 
   }
 
-
   animateCursor();
 
 
-  // -------------------------------------------------------
-  // Cursor hover targets
-  // -------------------------------------------------------
-
-  function setupCursorTargets() {
-
-    const cursorTargets =
-      document.querySelectorAll(
-        `
-        a,
-        button,
-        .btn,
-        .card,
-        .leader-card,
-        .activity-card,
-        .timeline-item,
-        .batch-card,
-        .rank-card,
-        .cadet-card,
-        .gallery-grid img
-        `
-      );
+  // Interactive elements
+  const interactiveElements =
+    document.querySelectorAll(`
+      a,
+      button,
+      .btn,
+      .card,
+      .leader-card,
+      .activity-card,
+      .batch-card,
+      .rank-card,
+      .cadet-card,
+      .gallery-grid img,
+      input,
+      textarea,
+      select
+    `);
 
 
-    cursorTargets.forEach(
-      (element) => {
+  interactiveElements.forEach((element) => {
 
-        element.addEventListener(
-          "mouseenter",
-          () => {
+    element.addEventListener(
+      "mouseenter",
+      () => {
 
-            cursorRing.classList.add(
-              "hover"
-            );
-
-          }
-        );
-
-
-        element.addEventListener(
-          "mouseleave",
-          () => {
-
-            cursorRing.classList.remove(
-              "hover"
-            );
-
-          }
+        cursor.classList.add(
+          "cursor-hover"
         );
 
       }
     );
 
-  }
 
+    element.addEventListener(
+      "mouseleave",
+      () => {
 
-  setupCursorTargets();
-
-
-  // -------------------------------------------------------
-  // Hide cursor while over lightbox
-  // -------------------------------------------------------
-
-  document.addEventListener(
-    "click",
-    () => {
-
-      const lightbox =
-        document.querySelector(
-          ".gallery-lightbox"
-        );
-
-
-      if (lightbox) {
-
-        cursorRing.classList.remove(
-          "hover"
+        cursor.classList.remove(
+          "cursor-hover"
         );
 
       }
+    );
+
+  });
+
+
+  // Hide cursor outside website
+  document.addEventListener(
+    "mouseleave",
+    () => {
+
+      cursor.classList.add(
+        "cursor-hidden"
+      );
 
     }
   );
 
-}
 
+  document.addEventListener(
+    "mouseenter",
+    () => {
 
-// =========================================================
-// END OF SCRIPT
-// =========================================================
+      cursor.classList.remove(
+        "cursor-hidden"
+      );
+
+    }
+  );
+
+})();
