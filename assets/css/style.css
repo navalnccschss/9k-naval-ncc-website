@@ -1,12 +1,14 @@
 /* =========================================================
    9(K) NAVAL UNIT NCC
    ST. CATHERINE'S HSS PAYYAMPALLY
-   COMPLETE STYLE.CSS
+
+   FULL WORKING STYLESHEET
+   Original design preserved + visual improvements
 ========================================================= */
 
 
 /* ==========================
-   GOOGLE FONTS
+   GOOGLE FONT
 ========================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cinzel:wght@500;700&display=swap');
@@ -39,8 +41,9 @@ img {
     max-width: 100%;
 }
 
+button,
 a {
-    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 
@@ -51,18 +54,23 @@ a {
 #loader {
     position: fixed;
     inset: 0;
+
     background: #071428;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     z-index: 99999;
+
     transition: opacity 0.7s ease;
 }
 
 #loader h2 {
     color: #d4af37;
     text-align: center;
+    font-family: 'Cinzel', serif;
 }
 
 .wheel {
@@ -77,6 +85,9 @@ a {
     animation: spin 1s linear infinite;
 
     margin-bottom: 20px;
+
+    box-shadow:
+        0 0 20px rgba(212,175,55,0.15);
 }
 
 @keyframes spin {
@@ -104,6 +115,11 @@ header {
 
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
+
+    border-bottom:
+        1px solid rgba(212,175,55,0.08);
+
+    transition: 0.3s ease;
 }
 
 nav {
@@ -126,6 +142,7 @@ nav {
 
 .logo {
     display: flex;
+
     align-items: center;
 
     gap: 12px;
@@ -136,6 +153,12 @@ nav {
     height: 50px;
 
     object-fit: contain;
+
+    filter:
+        drop-shadow(
+            0 0 6px
+            rgba(212,175,55,0.15)
+        );
 }
 
 .logo h2 {
@@ -144,6 +167,8 @@ nav {
     font-size: 1.3rem;
 
     font-weight: 600;
+
+    white-space: nowrap;
 }
 
 
@@ -181,7 +206,7 @@ nav {
 
     position: absolute;
 
-    left: 0;
+    left: 50%;
     bottom: -7px;
 
     width: 0;
@@ -189,7 +214,9 @@ nav {
 
     background: #d4af37;
 
-    transition: 0.3s;
+    transform: translateX(-50%);
+
+    transition: 0.3s ease;
 }
 
 .nav-links a:hover::after,
@@ -211,7 +238,7 @@ nav {
 
     color: #ffffff;
 
-    background: none;
+    background: transparent;
 
     border: none;
 }
@@ -243,6 +270,7 @@ nav {
         url('../images/hero1.jpg');
 
     background-size: cover;
+
     background-position: center;
 
     transition: 1s;
@@ -263,27 +291,40 @@ nav {
 
     padding: 20px;
 
-    animation: heroEntrance 1s ease;
+    animation:
+        heroEnter
+        1s
+        ease
+        both;
 }
 
-@keyframes heroEntrance {
+@keyframes heroEnter {
 
     from {
         opacity: 0;
-        transform: translateY(30px);
+
+        transform:
+            translateY(30px);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0);
-    }
 
+        transform:
+            translateY(0);
+    }
 }
 
 .hero-logo {
     width: 120px;
 
-    margin: 0 auto 20px;
+    margin-bottom: 20px;
+
+    filter:
+        drop-shadow(
+            0 0 15px
+            rgba(212,175,55,0.2)
+        );
 }
 
 .hero h1 {
@@ -292,6 +333,9 @@ nav {
     font-size: 4rem;
 
     margin: 15px 0;
+
+    text-shadow:
+        0 5px 25px rgba(0,0,0,0.4);
 }
 
 .hero h3 {
@@ -306,6 +350,8 @@ nav {
     margin-top: 20px;
 
     font-size: 1.1rem;
+
+    letter-spacing: 1px;
 }
 
 
@@ -330,19 +376,25 @@ nav {
 
     font-weight: 600;
 
-    transition: 0.4s;
+    transition:
+        transform 0.4s ease,
+        background 0.4s ease,
+        box-shadow 0.4s ease;
 
     box-shadow:
-        0 8px 25px rgba(212,175,55,0.15);
+        0 8px 25px
+        rgba(212,175,55,0.15);
 }
 
 .btn:hover {
-    transform: translateY(-6px);
+    transform:
+        translateY(-6px);
 
     background: #ffffff;
 
     box-shadow:
-        0 12px 35px rgba(212,175,55,0.3);
+        0 15px 35px
+        rgba(212,175,55,0.25);
 }
 
 
@@ -354,7 +406,6 @@ nav {
     position: absolute;
 
     bottom: 0;
-
     left: 0;
 
     width: 100%;
@@ -362,6 +413,8 @@ nav {
     height: 160px;
 
     overflow: hidden;
+
+    pointer-events: none;
 }
 
 .waves span {
@@ -371,11 +424,16 @@ nav {
 
     height: 180px;
 
-    background: rgba(255,255,255,0.08);
+    background:
+        rgba(255,255,255,0.08);
 
     border-radius: 45%;
 
-    animation: wave 18s linear infinite;
+    animation:
+        wave
+        18s
+        linear
+        infinite;
 }
 
 .waves span:nth-child(2) {
@@ -393,13 +451,14 @@ nav {
 @keyframes wave {
 
     from {
-        transform: translateX(-30%);
+        transform:
+            translateX(-30%);
     }
 
     to {
-        transform: translateX(0);
+        transform:
+            translateX(0);
     }
-
 }
 
 
@@ -417,7 +476,10 @@ nav {
 
     border-radius: 50%;
 
-    animation: twinkle infinite ease-in-out;
+    animation:
+        twinkle
+        infinite
+        ease-in-out;
 
     pointer-events: none;
 }
@@ -427,15 +489,16 @@ nav {
     0%,100% {
         opacity: 0.2;
 
-        transform: scale(1);
+        transform:
+            scale(1);
     }
 
     50% {
         opacity: 1;
 
-        transform: scale(2);
+        transform:
+            scale(2);
     }
-
 }
 
 
@@ -461,6 +524,10 @@ nav {
     font-size: 2.3rem;
 
     font-family: 'Cinzel', serif;
+
+    text-shadow:
+        0 0 15px
+        rgba(212,175,55,0.08);
 }
 
 .title::after {
@@ -468,14 +535,14 @@ nav {
 
     display: block;
 
-    width: 70px;
-    height: 3px;
-
-    margin: 15px auto 0;
+    width: 65px;
+    height: 2px;
 
     background: #d4af37;
 
-    border-radius: 20px;
+    margin: 14px auto 0;
+
+    border-radius: 10px;
 }
 
 
@@ -493,7 +560,10 @@ nav {
     display: grid;
 
     grid-template-columns:
-        repeat(auto-fit,minmax(250px,1fr));
+        repeat(
+            auto-fit,
+            minmax(250px,1fr)
+        );
 
     gap: 25px;
 
@@ -503,12 +573,15 @@ nav {
 }
 
 .card {
-    background: rgba(255,255,255,0.08);
+    background:
+        rgba(255,255,255,0.08);
 
     backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 
     border:
-        1px solid rgba(255,255,255,0.08);
+        1px solid
+        rgba(255,255,255,0.08);
 
     padding: 35px;
 
@@ -516,14 +589,22 @@ nav {
 
     text-align: center;
 
-    transition: 0.4s;
+    transition:
+        transform 0.4s ease,
+        border-color 0.4s ease,
+        box-shadow 0.4s ease;
 }
 
 .card:hover {
-    transform: translateY(-10px);
+    transform:
+        translateY(-10px);
 
     border-color:
-        rgba(212,175,55,0.4);
+        rgba(212,175,55,0.35);
+
+    box-shadow:
+        0 15px 35px
+        rgba(0,0,0,0.2);
 }
 
 .card h2 {
@@ -541,15 +622,20 @@ nav {
     display: grid;
 
     grid-template-columns:
-        repeat(auto-fit,minmax(300px,1fr));
+        repeat(
+            auto-fit,
+            minmax(300px,1fr)
+        );
 
     gap: 35px;
 }
 
 .leader-card {
-    background: rgba(255,255,255,0.06);
+    background:
+        rgba(255,255,255,0.06);
 
     backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 
     padding: 40px;
 
@@ -557,14 +643,26 @@ nav {
 
     text-align: center;
 
-    transition: 0.4s;
+    border:
+        1px solid
+        rgba(255,255,255,0.06);
+
+    transition:
+        transform 0.4s ease,
+        border-color 0.4s ease,
+        box-shadow 0.4s ease;
 }
 
 .leader-card:hover {
-    transform: translateY(-10px);
+    transform:
+        translateY(-10px);
 
     border-color:
-        rgba(212,175,55,0.4);
+        rgba(212,175,55,0.35);
+
+    box-shadow:
+        0 18px 40px
+        rgba(0,0,0,0.22);
 }
 
 .photo {
@@ -580,39 +678,66 @@ nav {
     margin: 0 auto 20px;
 
     display: block;
+
+    box-shadow:
+        0 0 25px
+        rgba(212,175,55,0.12);
 }
 
 
 /* ==========================
-   ACTIVITIES
+   ACTIVITY CARDS
 ========================== */
 
 .activity-grid {
     display: grid;
 
     grid-template-columns:
-        repeat(auto-fit,minmax(250px,1fr));
+        repeat(
+            auto-fit,
+            minmax(250px,1fr)
+        );
 
     gap: 25px;
 }
 
 .activity-card {
-    background: rgba(255,255,255,0.06);
+    background:
+        rgba(255,255,255,0.06);
 
     backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 
     border-radius: 25px;
 
     padding: 35px;
 
-    transition: 0.4s;
+    border:
+        1px solid
+        rgba(255,255,255,0.06);
+
+    transition:
+        transform 0.4s ease,
+        border-color 0.4s ease,
+        box-shadow 0.4s ease;
 }
 
 .activity-card:hover {
-    transform: translateY(-10px);
+    transform:
+        translateY(-10px);
 
     border-color:
-        rgba(212,175,55,0.4);
+        rgba(212,175,55,0.35);
+
+    box-shadow:
+        0 15px 35px
+        rgba(0,0,0,0.2);
+}
+
+.activity-card h3 {
+    color: #d4af37;
+
+    margin-bottom: 10px;
 }
 
 
@@ -624,6 +749,8 @@ nav {
     max-width: 850px;
 
     margin: auto;
+
+    position: relative;
 }
 
 .timeline-item {
@@ -632,19 +759,28 @@ nav {
 
     padding: 30px;
 
-    border-left: 5px solid #d4af37;
+    border-left:
+        5px solid #d4af37;
 
     border-radius: 20px;
 
     margin-bottom: 30px;
 
     backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 
-    transition: 0.4s;
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease;
 }
 
 .timeline-item:hover {
-    transform: translateX(5px);
+    transform:
+        translateX(7px);
+
+    box-shadow:
+        0 15px 35px
+        rgba(0,0,0,0.2);
 }
 
 .timeline-item h3 {
@@ -662,7 +798,10 @@ nav {
     display: grid;
 
     grid-template-columns:
-        repeat(auto-fit,minmax(300px,1fr));
+        repeat(
+            auto-fit,
+            minmax(300px,1fr)
+        );
 
     gap: 20px;
 }
@@ -673,12 +812,14 @@ nav {
     aspect-ratio: 4 / 3;
 
     /*
-       CONTAIN prevents your photos
-       from being unnecessarily cropped.
+       Keep the entire photo visible.
+       This prevents unnecessary cropping.
     */
+
     object-fit: contain;
 
-    background: #0f2342;
+    background:
+        #0f2342;
 
     padding: 8px;
 
@@ -686,16 +827,26 @@ nav {
 
     cursor: pointer;
 
-    transition: 0.4s;
+    transition:
+        transform 0.4s ease,
+        border-color 0.4s ease,
+        box-shadow 0.4s ease;
 
     border:
-        1px solid rgba(255,255,255,0.08);
+        1px solid
+        rgba(255,255,255,0.06);
 }
 
 .gallery-grid img:hover {
-    transform: scale(1.03);
+    transform:
+        scale(1.025);
 
-    border-color: #d4af37;
+    border-color:
+        rgba(212,175,55,0.45);
+
+    box-shadow:
+        0 15px 35px
+        rgba(0,0,0,0.25);
 }
 
 
@@ -708,18 +859,23 @@ nav {
         rgba(255,255,255,0.06);
 
     backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 
     padding: 40px;
 
     border-radius: 25px;
 
     text-align: center;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.06);
 }
 
 .contact-box h3 {
     color: #d4af37;
 
-    margin-bottom: 15px;
+    margin-bottom: 12px;
 }
 
 .contact-box a {
@@ -745,6 +901,10 @@ footer {
     padding: 45px 20px;
 
     background: #04101f;
+
+    border-top:
+        1px solid
+        rgba(212,175,55,0.08);
 }
 
 footer p {
@@ -755,10 +915,97 @@ footer a {
     color: #d4af37;
 
     text-decoration: none;
+
+    transition: 0.3s;
 }
 
 footer a:hover {
     color: #ffffff;
+}
+
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+.section,
+.card,
+.leader-card,
+.activity-card,
+.timeline-item,
+.batch-card,
+.rank-card {
+    opacity: 0;
+
+    transform:
+        translateY(50px);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+.show {
+    opacity: 1;
+
+    transform:
+        translateY(0);
+}
+
+
+/* =========================================================
+   BACK TO TOP
+========================================================= */
+
+.top-btn {
+    position: fixed;
+
+    right: 25px;
+    bottom: 25px;
+
+    width: 55px;
+    height: 55px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #d4af37;
+
+    color: #071428;
+
+    font-size: 1.5rem;
+
+    cursor: pointer;
+
+    opacity: 0;
+
+    transform:
+        scale(0);
+
+    transition: 0.4s;
+
+    z-index: 999;
+
+    box-shadow:
+        0 8px 25px
+        rgba(212,175,55,0.2);
+}
+
+.top-btn:hover {
+    box-shadow:
+        0 12px 35px
+        rgba(212,175,55,0.35);
+
+    transform:
+        scale(1.08);
+}
+
+.show-top {
+    opacity: 1;
+
+    transform:
+        scale(1);
 }
 
 
@@ -780,7 +1027,10 @@ footer a:hover {
     display: grid;
 
     grid-template-columns:
-        repeat(auto-fit,minmax(340px,1fr));
+        repeat(
+            auto-fit,
+            minmax(340px,1fr)
+        );
 
     gap: 35px;
 }
@@ -790,22 +1040,32 @@ footer a:hover {
         rgba(255,255,255,0.06);
 
     backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 
     border-radius: 25px;
 
     overflow: hidden;
 
-    transition: 0.4s;
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease,
+        border-color 0.4s ease;
 
     border:
-        1px solid rgba(255,255,255,0.08);
+        1px solid
+        rgba(255,255,255,0.08);
 }
 
 .batch-card:hover {
-    transform: translateY(-12px);
+    transform:
+        translateY(-12px);
 
     box-shadow:
-        0 15px 35px rgba(212,175,55,0.25);
+        0 15px 35px
+        rgba(212,175,55,0.25);
+
+    border-color:
+        rgba(212,175,55,0.35);
 }
 
 .batch-image {
@@ -820,12 +1080,14 @@ footer a:hover {
 
     object-fit: cover;
 
-    transition: 0.5s;
+    transition:
+        transform 0.5s ease;
 }
 
 .batch-card:hover
 .batch-image img {
-    transform: scale(1.08);
+    transform:
+        scale(1.06);
 }
 
 .batch-content {
@@ -856,6 +1118,8 @@ footer a:hover {
     color: #d4af37;
 
     margin-bottom: 15px;
+
+    font-family: 'Cinzel', serif;
 }
 
 .batch-content p {
@@ -870,7 +1134,8 @@ footer a:hover {
 ========================================================= */
 
 .rank-card {
-    border: 2px solid #d4af37;
+    border:
+        2px solid #d4af37;
 
     background:
         linear-gradient(
@@ -878,6 +1143,41 @@ footer a:hover {
             rgba(212,175,55,0.18),
             rgba(255,255,255,0.06)
         );
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.rank-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -100%;
+
+    width: 60%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,0.08),
+            transparent
+        );
+
+    transform: skewX(-20deg);
+
+    transition:
+        left 0.8s ease;
+
+    pointer-events: none;
+}
+
+.rank-card:hover::before {
+    left: 140%;
 }
 
 .rank-card:hover {
@@ -888,8 +1188,8 @@ footer a:hover {
 
 
 /* =========================================================
-   POC / LC RANK HEADINGS
-   FIXED — LINES DO NOT CROSS TEXT
+   POC / LC RANK TITLES
+   FIXED VERSION
 ========================================================= */
 
 .rank-title {
@@ -913,23 +1213,24 @@ footer a:hover {
 
     font-family: 'Cinzel', serif;
 
-    font-weight: 700;
-
     line-height: 1.3;
+
+    position: relative;
 }
 
 
 /*
-   The lines are FLEX ITEMS.
-   This prevents them from crossing
-   through POC / LC text.
+   IMPORTANT:
+   The lines are now FLEX ITEMS instead
+   of absolutely positioned elements.
+
+   Therefore they can NEVER cross
+   through the heading text.
 */
 
 .rank-title::before,
 .rank-title::after {
     content: "";
-
-    display: block;
 
     width: 100px;
 
@@ -937,96 +1238,48 @@ footer a:hover {
 
     flex: 0 0 100px;
 
-    background: #d4af37;
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #d4af37
+        );
 
-    opacity: 0.8;
+    opacity: 0.85;
+}
+
+.rank-title::after {
+    background:
+        linear-gradient(
+            90deg,
+            #d4af37,
+            transparent
+        );
 }
 
 
 /* =========================================================
-   SCROLL REVEAL
+   FUTURISTIC NCC CURSOR
 ========================================================= */
 
-.section,
-.card,
-.leader-card,
-.activity-card,
-.timeline-item,
-.batch-card,
-.rank-card,
-.gallery-grid img {
-    opacity: 0;
+/*
+   These elements are created by JavaScript:
 
-    transform: translateY(50px);
+   .cursor-dot
+   .cursor-ring
+   .cursor-cross
+   .cursor-trail
 
-    transition:
-        opacity 0.8s ease,
-        transform 0.8s ease;
-}
-
-.show {
-    opacity: 1 !important;
-
-    transform:
-        translateY(0) !important;
-}
-
-
-/* =========================================================
-   BACK TO TOP
-========================================================= */
-
-.top-btn {
-    position: fixed;
-
-    right: 25px;
-
-    bottom: 25px;
-
-    width: 55px;
-    height: 55px;
-
-    border: none;
-
-    border-radius: 50%;
-
-    background: #d4af37;
-
-    color: #071428;
-
-    font-size: 1.5rem;
-
-    cursor: pointer;
-
-    opacity: 0;
-
-    transform: scale(0);
-
-    transition: 0.4s;
-
-    z-index: 999;
-}
-
-.top-btn:hover {
-    transform: scale(1.1);
-}
-
-.show-top {
-    opacity: 1;
-
-    transform: scale(1);
-}
-
-
-/* =========================================================
-   CUSTOM GOLD CURSOR
-========================================================= */
+   The design is intentionally subtle:
+   military/naval targeting-system inspired,
+   rather than a huge glowing circle.
+*/
 
 .cursor-dot {
     position: fixed;
 
-    width: 7px;
-    height: 7px;
+    width: 6px;
+    height: 6px;
 
     background: #d4af37;
 
@@ -1040,18 +1293,24 @@ footer a:hover {
         translate(-50%, -50%);
 
     box-shadow:
-        0 0 12px #d4af37,
-        0 0 25px rgba(212,175,55,0.5);
+        0 0 8px
+        rgba(212,175,55,0.9),
+        0 0 18px
+        rgba(212,175,55,0.45);
 }
+
+
+/* Main targeting ring */
 
 .cursor-ring {
     position: fixed;
 
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
 
     border:
-        2px solid rgba(212,175,55,0.7);
+        1px solid
+        rgba(212,175,55,0.75);
 
     border-radius: 50%;
 
@@ -1066,22 +1325,143 @@ footer a:hover {
         width 0.25s ease,
         height 0.25s ease,
         border-color 0.25s ease,
-        background 0.25s ease;
+        background 0.25s ease,
+        box-shadow 0.25s ease;
 }
 
-.cursor-ring.hover {
-    width: 50px;
-    height: 50px;
+
+/*
+   Small targeting marks
+*/
+
+.cursor-ring::before,
+.cursor-ring::after {
+    content: "";
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
 
     background:
-        rgba(212,175,55,0.08);
+        rgba(212,175,55,0.75);
 
-    border-color: #d4af37;
+    transform:
+        translate(-50%, -50%);
+}
+
+.cursor-ring::before {
+    width: 42px;
+    height: 1px;
+}
+
+.cursor-ring::after {
+    width: 1px;
+    height: 42px;
+}
+
+
+/*
+   Hover state
+*/
+
+.cursor-ring.hover {
+    width: 44px;
+    height: 44px;
+
+    border-color:
+        #d4af37;
+
+    background:
+        rgba(212,175,55,0.04);
+
+    box-shadow:
+        0 0 15px
+        rgba(212,175,55,0.15);
+}
+
+
+/*
+   Small radar pulse
+*/
+
+.cursor-ring.hover::before {
+    width: 55px;
+}
+
+.cursor-ring.hover::after {
+    height: 55px;
+}
+
+
+/*
+   Cursor trail particles
+*/
+
+.cursor-trail {
+    position: fixed;
+
+    width: 4px;
+    height: 4px;
+
+    background: #d4af37;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    z-index: 999997;
+
+    transform:
+        translate(-50%, -50%);
+
+    animation:
+        cursorFade
+        0.7s
+        ease-out
+        forwards;
+
+    box-shadow:
+        0 0 7px
+        rgba(212,175,55,0.5);
+}
+
+@keyframes cursorFade {
+
+    0% {
+        opacity: 0.65;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            scale(0);
+    }
+}
+
+
+/*
+   Hide custom cursor on touch devices.
+*/
+
+@media (hover: none), (pointer: coarse) {
+
+    .cursor-dot,
+    .cursor-ring,
+    .cursor-trail {
+        display: none;
+    }
 }
 
 
 /* =========================================================
-   MOBILE
+   TABLET / MOBILE
 ========================================================= */
 
 @media(max-width:900px) {
@@ -1106,12 +1486,15 @@ footer a:hover {
         position: absolute;
 
         top: 85px;
-
         left: 0;
 
         width: 100%;
 
-        background: #071428;
+        background:
+            rgba(7,20,40,0.98);
+
+        backdrop-filter:
+            blur(15px);
 
         flex-direction: column;
 
@@ -1120,6 +1503,10 @@ footer a:hover {
         gap: 0;
 
         display: none;
+
+        border-bottom:
+            1px solid
+            rgba(212,175,55,0.12);
     }
 
     .nav-links.show-menu {
@@ -1143,22 +1530,18 @@ footer a:hover {
     .batch-grid {
         grid-template-columns: 1fr;
     }
-
-    .gallery-grid {
-        grid-template-columns:
-            repeat(2,1fr);
-    }
 }
 
 
 /* =========================================================
-   SMALL MOBILE
+   MOBILE
 ========================================================= */
 
 @media(max-width:768px) {
 
     .section {
-        padding: 60px 20px;
+        padding:
+            60px 20px;
     }
 
     .title {
@@ -1172,9 +1555,6 @@ footer a:hover {
     .gallery-grid img {
         aspect-ratio: auto;
 
-        /*
-           Keep full image visible on phones.
-        */
         height: auto;
 
         max-height: 500px;
@@ -1190,29 +1570,25 @@ footer a:hover {
     /* POC / LC */
 
     .rank-title {
-        font-size: 1.35rem;
+        font-size: 1.4rem;
 
         gap: 12px;
 
-        margin: 55px 0 30px;
+        margin:
+            55px 0 30px;
     }
 
     .rank-title::before,
     .rank-title::after {
-        width: 40px;
+        width: 45px;
 
-        flex: 0 0 40px;
-    }
-
-
-    .cadet-card img {
-        max-width: 150px;
+        flex: 0 0 45px;
     }
 }
 
 
 /* =========================================================
-   VERY SMALL PHONES
+   SMALL PHONES
 ========================================================= */
 
 @media(max-width:450px) {
@@ -1239,7 +1615,8 @@ footer a:hover {
     }
 
     .btn {
-        padding: 12px 25px;
+        padding:
+            12px 25px;
     }
 
     .rank-title {
@@ -1254,17 +1631,125 @@ footer a:hover {
 
         flex: 0 0 20px;
     }
+
+    .batch-grid {
+        gap: 20px;
+    }
+
+    .card,
+    .leader-card,
+    .activity-card {
+        padding: 25px;
+    }
+}
+/* =========================================================
+   GALLERY LIGHTBOX
+========================================================= */
+
+.gallery-lightbox {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0,0,0,0.94);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px;
+
+    z-index: 99999;
+
+    animation: lightboxFade 0.25s ease;
+}
+
+.gallery-lightbox img {
+    max-width: 92%;
+    max-height: 90vh;
+
+    width: auto;
+    height: auto;
+
+    object-fit: contain;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 0 50px
+        rgba(0,0,0,0.7);
+}
+
+.lightbox-close {
+    position: absolute;
+
+    top: 20px;
+    right: 25px;
+
+    width: 48px;
+    height: 48px;
+
+    border: 1px solid
+        rgba(212,175,55,0.5);
+
+    border-radius: 50%;
+
+    background:
+        rgba(7,20,40,0.8);
+
+    color: #d4af37;
+
+    font-size: 30px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.lightbox-close:hover {
+    background: #d4af37;
+
+    color: #071428;
+
+    transform: rotate(90deg);
+}
+
+@keyframes lightboxFade {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 
-/* =========================================================
-   DISABLE CUSTOM CURSOR ON TOUCH DEVICES
-========================================================= */
+/* Mobile lightbox */
 
-@media(hover:none), (pointer:coarse) {
+@media(max-width:768px) {
 
-    .cursor-dot,
-    .cursor-ring {
-        display: none;
+    .gallery-lightbox {
+        padding: 20px;
+    }
+
+    .gallery-lightbox img {
+        max-width: 96%;
+        max-height: 85vh;
+    }
+
+    .lightbox-close {
+        top: 15px;
+        right: 15px;
+
+        width: 42px;
+        height: 42px;
+
+        font-size: 26px;
     }
 }
