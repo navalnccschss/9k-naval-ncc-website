@@ -2216,3 +2216,17 @@ body.lightbox-open {
     }
 
 }
+/* =========================================================
+   BATCH GROUP PHOTOGRAPH FIX
+========================================================= */
+
+.contact-box > img {
+    display: block;
+    width: 100% !important;
+    max-width: 900px !important;
+    height: auto !important;
+    max-height: none !important;
+    object-fit: contain !important;
+    margin: 0 auto !important;
+    border-radius: 20px !important;
+}
