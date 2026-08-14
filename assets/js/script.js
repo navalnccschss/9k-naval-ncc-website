@@ -38,13 +38,18 @@ const navLinks = document.querySelector(".nav-links");
 if (menuBtn && navLinks) {
 
   menuBtn.addEventListener("click", () => {
+
     navLinks.classList.toggle("show-menu");
+
   });
+
 
   document.querySelectorAll(".nav-links a").forEach((link) => {
 
     link.addEventListener("click", () => {
+
       navLinks.classList.remove("show-menu");
+
     });
 
   });
@@ -58,9 +63,9 @@ if (menuBtn && navLinks) {
 
 const reveals = document.querySelectorAll(
   ".section, .card, .leader-card, .activity-card, " +
-  ".timeline-item, .batch-card, .rank-card, " +
-  ".cadet-card, .gallery-grid img"
+  ".timeline-item, .batch-card, .rank-card, .gallery-grid img"
 );
+
 
 function revealOnScroll() {
 
@@ -78,6 +83,7 @@ function revealOnScroll() {
   });
 
 }
+
 
 window.addEventListener(
   "scroll",
@@ -97,6 +103,7 @@ const sections =
 
 const navItems =
   document.querySelectorAll(".nav-links a");
+
 
 function updateActiveNavigation() {
 
@@ -122,6 +129,7 @@ function updateActiveNavigation() {
 
   });
 
+
   navItems.forEach((link) => {
 
     link.classList.remove("active");
@@ -139,6 +147,7 @@ function updateActiveNavigation() {
 
 }
 
+
 window.addEventListener(
   "scroll",
   updateActiveNavigation,
@@ -155,18 +164,21 @@ updateActiveNavigation();
 const counters =
   document.querySelectorAll(".card h2");
 
+
 counters.forEach((counter) => {
 
   const text =
     counter.innerText.trim();
 
-  /*
-    Only pure numbers animate.
 
-    50       → animates
-    2024     → animates
-    9(K)     → stays normal
-    19 Jan   → stays normal
+  /*
+     Only animate pure numbers.
+
+     This means:
+     50       → animates
+     2024     → animates
+     9(K)     → stays normal
+     19 Jan   → stays normal
   */
 
   if (!isNaN(text) && text !== "") {
@@ -176,10 +188,12 @@ counters.forEach((counter) => {
 
     counter.innerText = "0";
 
+
     function updateCounter() {
 
       const current =
         parseInt(counter.innerText, 10);
+
 
       if (current < target) {
 
@@ -209,6 +223,7 @@ counters.forEach((counter) => {
 
     }
 
+
     updateCounter();
 
   }
@@ -235,6 +250,7 @@ topBtn.setAttribute(
 
 document.body.appendChild(topBtn);
 
+
 function updateTopButton() {
 
   if (window.scrollY > 400) {
@@ -253,19 +269,24 @@ function updateTopButton() {
 
 }
 
+
 window.addEventListener(
   "scroll",
   updateTopButton,
   { passive: true }
 );
 
+
 topBtn.addEventListener(
   "click",
   () => {
 
     window.scrollTo({
+
       top: 0,
+
       behavior: "smooth"
+
     });
 
   }
@@ -279,6 +300,7 @@ topBtn.addEventListener(
 const hero =
   document.querySelector(".hero");
 
+
 if (hero) {
 
   for (let i = 0; i < 40; i++) {
@@ -288,17 +310,22 @@ if (hero) {
 
     star.classList.add("star");
 
+
     star.style.left =
       Math.random() * 100 + "%";
+
 
     star.style.top =
       Math.random() * 100 + "%";
 
+
     star.style.animationDuration =
       Math.random() * 4 + 2 + "s";
 
+
     star.style.animationDelay =
       Math.random() * 3 + "s";
+
 
     hero.appendChild(star);
 
@@ -321,11 +348,14 @@ const heroImages = [
 
 ];
 
+
 let currentHero = 0;
+
 
 function changeHero() {
 
   if (!hero) return;
+
 
   hero.style.background =
     `
@@ -336,13 +366,17 @@ function changeHero() {
     url("${heroImages[currentHero]}")
     `;
 
+
   hero.style.backgroundSize =
     "cover";
+
 
   hero.style.backgroundPosition =
     "center";
 
+
   currentHero++;
+
 
   if (
     currentHero >=
@@ -355,7 +389,9 @@ function changeHero() {
 
 }
 
+
 changeHero();
+
 
 setInterval(
   changeHero,
@@ -372,13 +408,16 @@ const galleryImages =
     ".gallery-grid img"
   );
 
+
 function openLightbox(image) {
 
   const overlay =
     document.createElement("div");
 
+
   overlay.className =
     "gallery-lightbox";
+
 
   overlay.innerHTML = `
 
@@ -396,17 +435,21 @@ function openLightbox(image) {
 
   `;
 
+
   document.body.appendChild(
     overlay
   );
 
+
   document.body.style.overflow =
     "hidden";
+
 
   const closeButton =
     overlay.querySelector(
       ".lightbox-close"
     );
+
 
   function closeLightbox() {
 
@@ -415,22 +458,8 @@ function openLightbox(image) {
     document.body.style.overflow =
       "";
 
-    document.removeEventListener(
-      "keydown",
-      escapeHandler
-    );
-
   }
 
-  function escapeHandler(event) {
-
-    if (event.key === "Escape") {
-
-      closeLightbox();
-
-    }
-
-  }
 
   closeButton.addEventListener(
     "click",
@@ -442,6 +471,7 @@ function openLightbox(image) {
 
     }
   );
+
 
   overlay.addEventListener(
     "click",
@@ -458,12 +488,27 @@ function openLightbox(image) {
     }
   );
 
+
   document.addEventListener(
     "keydown",
-    escapeHandler
+    function escapeHandler(event) {
+
+      if (event.key === "Escape") {
+
+        closeLightbox();
+
+        document.removeEventListener(
+          "keydown",
+          escapeHandler
+        );
+
+      }
+
+    }
   );
 
 }
+
 
 galleryImages.forEach(
   (image) => {
@@ -482,56 +527,57 @@ galleryImages.forEach(
 
 
 // =========================================================
-// PREMIUM NCC CURSOR
-// CLEAN • FUTURISTIC • MINIMAL
+// FUTURISTIC NCC CURSOR
 // =========================================================
 
-(() => {
+/*
+   The custom cursor is only enabled
+   on devices with a real mouse.
 
-  // Do not run custom cursor on phones/tablets
-  if (
-    window.matchMedia(
-      "(pointer: coarse)"
-    ).matches
-  ) {
-    return;
-  }
+   Phones/tablets automatically use
+   their normal touch interaction.
+*/
 
 
-  // -----------------------------------------
-  // CREATE CURSOR
-  // -----------------------------------------
+const hasMouse =
+  window.matchMedia(
+    "(hover: hover) and (pointer: fine)"
+  ).matches;
 
-  const cursor =
+
+if (hasMouse) {
+
+
+  // -------------------------------------------------------
+  // Cursor elements
+  // -------------------------------------------------------
+
+  const cursorDot =
     document.createElement("div");
 
-  cursor.className =
-    "premium-cursor";
+  cursorDot.className =
+    "cursor-dot";
 
 
-  const core =
+  const cursorRing =
     document.createElement("div");
 
-  core.className =
-    "cursor-core";
-
-
-  const ring =
-    document.createElement("div");
-
-  ring.className =
+  cursorRing.className =
     "cursor-ring";
 
 
-  cursor.appendChild(ring);
-  cursor.appendChild(core);
+  document.body.appendChild(
+    cursorDot
+  );
 
-  document.body.appendChild(cursor);
+  document.body.appendChild(
+    cursorRing
+  );
 
 
-  // -----------------------------------------
-  // POSITION
-  // -----------------------------------------
+  // -------------------------------------------------------
+  // Mouse position
+  // -------------------------------------------------------
 
   let mouseX =
     window.innerWidth / 2;
@@ -540,14 +586,15 @@ galleryImages.forEach(
     window.innerHeight / 2;
 
 
-  let cursorX =
-    mouseX;
-
-  let cursorY =
-    mouseY;
+  let ringX = mouseX;
+  let ringY = mouseY;
 
 
-  window.addEventListener(
+  // -------------------------------------------------------
+  // Mouse movement
+  // -------------------------------------------------------
+
+  document.addEventListener(
     "mousemove",
     (event) => {
 
@@ -557,30 +604,82 @@ galleryImages.forEach(
       mouseY =
         event.clientY;
 
-    },
-    { passive: true }
+
+      cursorDot.style.left =
+        mouseX + "px";
+
+      cursorDot.style.top =
+        mouseY + "px";
+
+
+      /*
+         Small trail particles.
+
+         They appear only sometimes,
+         so the effect stays elegant.
+      */
+
+      if (
+        Math.random() > 0.72
+      ) {
+
+        const trail =
+          document.createElement(
+            "div"
+          );
+
+
+        trail.className =
+          "cursor-trail";
+
+
+        trail.style.left =
+          mouseX + "px";
+
+
+        trail.style.top =
+          mouseY + "px";
+
+
+        document.body.appendChild(
+          trail
+        );
+
+
+        setTimeout(() => {
+
+          trail.remove();
+
+        }, 700);
+
+      }
+
+    }
   );
 
 
-  // -----------------------------------------
-  // SMOOTH MOVEMENT
-  // -----------------------------------------
+  // -------------------------------------------------------
+  // Smooth cursor ring
+  // -------------------------------------------------------
 
   function animateCursor() {
 
-    cursorX +=
-      (mouseX - cursorX) * 0.18;
-
-    cursorY +=
-      (mouseY - cursorY) * 0.18;
+    ringX +=
+      (mouseX - ringX) *
+      0.12;
 
 
-    cursor.style.transform =
-      `translate3d(
-        ${cursorX}px,
-        ${cursorY}px,
-        0
-      )`;
+    ringY +=
+      (mouseY - ringY) *
+      0.12;
+
+
+    cursorRing.style.left =
+      ringX + "px";
+
+
+    cursorRing.style.top =
+      ringY + "px";
 
 
     requestAnimationFrame(
@@ -589,112 +688,97 @@ galleryImages.forEach(
 
   }
 
+
   animateCursor();
 
 
-  // -----------------------------------------
-  // INTERACTIVE ELEMENTS
-  // -----------------------------------------
+  // -------------------------------------------------------
+  // Cursor hover targets
+  // -------------------------------------------------------
 
-  const interactiveElements =
-    document.querySelectorAll(
-      `
-      a,
-      button,
-      .btn,
-      .card,
-      .leader-card,
-      .activity-card,
-      .batch-card,
-      .rank-card,
-      .cadet-card,
-      .gallery-grid img,
-      input,
-      textarea,
-      select
-      `
+  function setupCursorTargets() {
+
+    const cursorTargets =
+      document.querySelectorAll(
+        `
+        a,
+        button,
+        .btn,
+        .card,
+        .leader-card,
+        .activity-card,
+        .timeline-item,
+        .batch-card,
+        .rank-card,
+        .cadet-card,
+        .gallery-grid img
+        `
+      );
+
+
+    cursorTargets.forEach(
+      (element) => {
+
+        element.addEventListener(
+          "mouseenter",
+          () => {
+
+            cursorRing.classList.add(
+              "hover"
+            );
+
+          }
+        );
+
+
+        element.addEventListener(
+          "mouseleave",
+          () => {
+
+            cursorRing.classList.remove(
+              "hover"
+            );
+
+          }
+        );
+
+      }
     );
-
-
-  interactiveElements.forEach(
-    (element) => {
-
-      element.addEventListener(
-        "mouseenter",
-        () => {
-
-          cursor.classList.add(
-            "cursor-hover"
-          );
-
-        }
-      );
-
-
-      element.addEventListener(
-        "mouseleave",
-        () => {
-
-          cursor.classList.remove(
-            "cursor-hover"
-          );
-
-        }
-      );
-
-    }
-  );
-
-
-  // -----------------------------------------
-  // HIDE CURSOR WHEN OUTSIDE PAGE
-  // -----------------------------------------
-
-  document.addEventListener(
-    "mouseleave",
-    () => {
-
-      cursor.classList.add(
-        "cursor-hidden"
-      );
-
-    }
-  );
-
-
-  document.addEventListener(
-    "mouseenter",
-    () => {
-
-      cursor.classList.remove(
-        "cursor-hidden"
-      );
-
-    }
-  );
-
-
-  // -----------------------------------------
-  // HIDE CURSOR WHILE LOADING
-  // -----------------------------------------
-
-  const loader =
-    document.getElementById("loader");
-
-  if (loader) {
-
-    cursor.classList.add(
-      "cursor-loading"
-    );
-
-    setTimeout(() => {
-
-      cursor.classList.remove(
-        "cursor-loading"
-      );
-
-    }, 1500);
 
   }
 
-})();
+
+  setupCursorTargets();
+
+
+  // -------------------------------------------------------
+  // Hide cursor while over lightbox
+  // -------------------------------------------------------
+
+  document.addEventListener(
+    "click",
+    () => {
+
+      const lightbox =
+        document.querySelector(
+          ".gallery-lightbox"
+        );
+
+
+      if (lightbox) {
+
+        cursorRing.classList.remove(
+          "hover"
+        );
+
+      }
+
+    }
+  );
+
+}
+
+
+// =========================================================
+// END OF SCRIPT
+// =========================================================
