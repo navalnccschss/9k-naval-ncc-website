@@ -38,18 +38,13 @@ const navLinks = document.querySelector(".nav-links");
 if (menuBtn && navLinks) {
 
   menuBtn.addEventListener("click", () => {
-
     navLinks.classList.toggle("show-menu");
-
   });
-
 
   document.querySelectorAll(".nav-links a").forEach((link) => {
 
     link.addEventListener("click", () => {
-
       navLinks.classList.remove("show-menu");
-
     });
 
   });
@@ -63,9 +58,9 @@ if (menuBtn && navLinks) {
 
 const reveals = document.querySelectorAll(
   ".section, .card, .leader-card, .activity-card, " +
-  ".timeline-item, .batch-card, .rank-card, .gallery-grid img"
+  ".timeline-item, .batch-card, .rank-card, " +
+  ".cadet-card, .gallery-grid img"
 );
-
 
 function revealOnScroll() {
 
@@ -83,7 +78,6 @@ function revealOnScroll() {
   });
 
 }
-
 
 window.addEventListener(
   "scroll",
@@ -103,7 +97,6 @@ const sections =
 
 const navItems =
   document.querySelectorAll(".nav-links a");
-
 
 function updateActiveNavigation() {
 
@@ -129,7 +122,6 @@ function updateActiveNavigation() {
 
   });
 
-
   navItems.forEach((link) => {
 
     link.classList.remove("active");
@@ -147,7 +139,6 @@ function updateActiveNavigation() {
 
 }
 
-
 window.addEventListener(
   "scroll",
   updateActiveNavigation,
@@ -164,21 +155,18 @@ updateActiveNavigation();
 const counters =
   document.querySelectorAll(".card h2");
 
-
 counters.forEach((counter) => {
 
   const text =
     counter.innerText.trim();
 
-
   /*
-     Only animate pure numbers.
+    Only pure numbers animate.
 
-     This means:
-     50       → animates
-     2024     → animates
-     9(K)     → stays normal
-     19 Jan   → stays normal
+    50       → animates
+    2024     → animates
+    9(K)     → stays normal
+    19 Jan   → stays normal
   */
 
   if (!isNaN(text) && text !== "") {
@@ -188,12 +176,10 @@ counters.forEach((counter) => {
 
     counter.innerText = "0";
 
-
     function updateCounter() {
 
       const current =
         parseInt(counter.innerText, 10);
-
 
       if (current < target) {
 
@@ -223,7 +209,6 @@ counters.forEach((counter) => {
 
     }
 
-
     updateCounter();
 
   }
@@ -250,7 +235,6 @@ topBtn.setAttribute(
 
 document.body.appendChild(topBtn);
 
-
 function updateTopButton() {
 
   if (window.scrollY > 400) {
@@ -269,24 +253,19 @@ function updateTopButton() {
 
 }
 
-
 window.addEventListener(
   "scroll",
   updateTopButton,
   { passive: true }
 );
 
-
 topBtn.addEventListener(
   "click",
   () => {
 
     window.scrollTo({
-
       top: 0,
-
       behavior: "smooth"
-
     });
 
   }
@@ -300,7 +279,6 @@ topBtn.addEventListener(
 const hero =
   document.querySelector(".hero");
 
-
 if (hero) {
 
   for (let i = 0; i < 40; i++) {
@@ -310,22 +288,17 @@ if (hero) {
 
     star.classList.add("star");
 
-
     star.style.left =
       Math.random() * 100 + "%";
-
 
     star.style.top =
       Math.random() * 100 + "%";
 
-
     star.style.animationDuration =
       Math.random() * 4 + 2 + "s";
 
-
     star.style.animationDelay =
       Math.random() * 3 + "s";
-
 
     hero.appendChild(star);
 
@@ -348,14 +321,11 @@ const heroImages = [
 
 ];
 
-
 let currentHero = 0;
-
 
 function changeHero() {
 
   if (!hero) return;
-
 
   hero.style.background =
     `
@@ -366,17 +336,13 @@ function changeHero() {
     url("${heroImages[currentHero]}")
     `;
 
-
   hero.style.backgroundSize =
     "cover";
-
 
   hero.style.backgroundPosition =
     "center";
 
-
   currentHero++;
-
 
   if (
     currentHero >=
@@ -389,9 +355,7 @@ function changeHero() {
 
 }
 
-
 changeHero();
-
 
 setInterval(
   changeHero,
@@ -408,16 +372,13 @@ const galleryImages =
     ".gallery-grid img"
   );
 
-
 function openLightbox(image) {
 
   const overlay =
     document.createElement("div");
 
-
   overlay.className =
     "gallery-lightbox";
-
 
   overlay.innerHTML = `
 
@@ -435,21 +396,17 @@ function openLightbox(image) {
 
   `;
 
-
   document.body.appendChild(
     overlay
   );
 
-
   document.body.style.overflow =
     "hidden";
-
 
   const closeButton =
     overlay.querySelector(
       ".lightbox-close"
     );
-
 
   function closeLightbox() {
 
@@ -458,8 +415,22 @@ function openLightbox(image) {
     document.body.style.overflow =
       "";
 
+    document.removeEventListener(
+      "keydown",
+      escapeHandler
+    );
+
   }
 
+  function escapeHandler(event) {
+
+    if (event.key === "Escape") {
+
+      closeLightbox();
+
+    }
+
+  }
 
   closeButton.addEventListener(
     "click",
@@ -471,7 +442,6 @@ function openLightbox(image) {
 
     }
   );
-
 
   overlay.addEventListener(
     "click",
@@ -488,27 +458,12 @@ function openLightbox(image) {
     }
   );
 
-
   document.addEventListener(
     "keydown",
-    function escapeHandler(event) {
-
-      if (event.key === "Escape") {
-
-        closeLightbox();
-
-        document.removeEventListener(
-          "keydown",
-          escapeHandler
-        );
-
-      }
-
-    }
+    escapeHandler
   );
 
 }
-
 
 galleryImages.forEach(
   (image) => {
@@ -528,87 +483,218 @@ galleryImages.forEach(
 
 // =========================================================
 // PREMIUM NCC CURSOR
+// CLEAN • FUTURISTIC • MINIMAL
 // =========================================================
 
 (() => {
-  // Disable on touch/mobile devices
-  if (window.matchMedia("(pointer: coarse)").matches) return;
 
-  const cursor = document.createElement("div");
-  cursor.className = "premium-cursor";
+  // Do not run custom cursor on phones/tablets
+  if (
+    window.matchMedia(
+      "(pointer: coarse)"
+    ).matches
+  ) {
+    return;
+  }
 
-  const core = document.createElement("div");
-  core.className = "cursor-core";
 
-  const aura = document.createElement("div");
-  aura.className = "cursor-aura";
+  // -----------------------------------------
+  // CREATE CURSOR
+  // -----------------------------------------
 
-  const trail = document.createElement("div");
-  trail.className = "cursor-trail";
+  const cursor =
+    document.createElement("div");
 
-  cursor.appendChild(trail);
-  cursor.appendChild(aura);
+  cursor.className =
+    "premium-cursor";
+
+
+  const core =
+    document.createElement("div");
+
+  core.className =
+    "cursor-core";
+
+
+  const ring =
+    document.createElement("div");
+
+  ring.className =
+    "cursor-ring";
+
+
+  cursor.appendChild(ring);
   cursor.appendChild(core);
 
   document.body.appendChild(cursor);
 
-  let mouseX = window.innerWidth / 2;
-  let mouseY = window.innerHeight / 2;
 
-  let currentX = mouseX;
-  let currentY = mouseY;
+  // -----------------------------------------
+  // POSITION
+  // -----------------------------------------
 
-  let trailX = mouseX;
-  let trailY = mouseY;
+  let mouseX =
+    window.innerWidth / 2;
 
-  // Mouse movement
-  window.addEventListener("mousemove", (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-  });
+  let mouseY =
+    window.innerHeight / 2;
 
-  // Smooth animation
+
+  let cursorX =
+    mouseX;
+
+  let cursorY =
+    mouseY;
+
+
+  window.addEventListener(
+    "mousemove",
+    (event) => {
+
+      mouseX =
+        event.clientX;
+
+      mouseY =
+        event.clientY;
+
+    },
+    { passive: true }
+  );
+
+
+  // -----------------------------------------
+  // SMOOTH MOVEMENT
+  // -----------------------------------------
+
   function animateCursor() {
-    currentX += (mouseX - currentX) * 0.22;
-    currentY += (mouseY - currentY) * 0.22;
 
-    trailX += (mouseX - trailX) * 0.08;
-    trailY += (mouseY - trailY) * 0.08;
+    cursorX +=
+      (mouseX - cursorX) * 0.18;
+
+    cursorY +=
+      (mouseY - cursorY) * 0.18;
+
 
     cursor.style.transform =
-      `translate3d(${currentX}px, ${currentY}px, 0)`;
+      `translate3d(
+        ${cursorX}px,
+        ${cursorY}px,
+        0
+      )`;
 
-    trail.style.transform =
-      `translate3d(${trailX - currentX}px, ${trailY - currentY}px, 0)`;
 
-    requestAnimationFrame(animateCursor);
+    requestAnimationFrame(
+      animateCursor
+    );
+
   }
 
   animateCursor();
 
-  // Interactive elements
-  const interactiveElements = document.querySelectorAll(
-    "a, button, .btn, .card, .leader-card, .activity-card, .batch-card, .cadet-card, .gallery-grid img"
+
+  // -----------------------------------------
+  // INTERACTIVE ELEMENTS
+  // -----------------------------------------
+
+  const interactiveElements =
+    document.querySelectorAll(
+      `
+      a,
+      button,
+      .btn,
+      .card,
+      .leader-card,
+      .activity-card,
+      .batch-card,
+      .rank-card,
+      .cadet-card,
+      .gallery-grid img,
+      input,
+      textarea,
+      select
+      `
+    );
+
+
+  interactiveElements.forEach(
+    (element) => {
+
+      element.addEventListener(
+        "mouseenter",
+        () => {
+
+          cursor.classList.add(
+            "cursor-hover"
+          );
+
+        }
+      );
+
+
+      element.addEventListener(
+        "mouseleave",
+        () => {
+
+          cursor.classList.remove(
+            "cursor-hover"
+          );
+
+        }
+      );
+
+    }
   );
 
-  interactiveElements.forEach((element) => {
 
-    element.addEventListener("mouseenter", () => {
-      cursor.classList.add("cursor-hover");
-    });
+  // -----------------------------------------
+  // HIDE CURSOR WHEN OUTSIDE PAGE
+  // -----------------------------------------
 
-    element.addEventListener("mouseleave", () => {
-      cursor.classList.remove("cursor-hover");
-    });
-  });
+  document.addEventListener(
+    "mouseleave",
+    () => {
 
-  // Hide when leaving the website
-  document.addEventListener("mouseleave", () => {
-    cursor.classList.add("cursor-hidden");
-  });
+      cursor.classList.add(
+        "cursor-hidden"
+      );
 
-  document.addEventListener("mouseenter", () => {
-    cursor.classList.remove("cursor-hidden");
-  });
+    }
+  );
+
+
+  document.addEventListener(
+    "mouseenter",
+    () => {
+
+      cursor.classList.remove(
+        "cursor-hidden"
+      );
+
+    }
+  );
+
+
+  // -----------------------------------------
+  // HIDE CURSOR WHILE LOADING
+  // -----------------------------------------
+
+  const loader =
+    document.getElementById("loader");
+
+  if (loader) {
+
+    cursor.classList.add(
+      "cursor-loading"
+    );
+
+    setTimeout(() => {
+
+      cursor.classList.remove(
+        "cursor-loading"
+      );
+
+    }, 1500);
+
+  }
 
 })();
