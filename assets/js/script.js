@@ -364,130 +364,124 @@ setInterval(
 
 
 // =========================================================
-// GALLERY LIGHTBOX
+// GALLERY LIGHTBOX — FINAL
 // =========================================================
 
 const galleryImages = document.querySelectorAll(".gallery-grid img");
 
-let activeLightbox = null;
-
 function openLightbox(image) {
 
-  // Prevent duplicate lightboxes
-  if (activeLightbox) return;
+    const existing = document.querySelector(".gallery-lightbox");
 
-  const overlay = document.createElement("div");
+    if (existing) {
+        existing.remove();
+    }
 
-  overlay.className = "gallery-lightbox";
+    const overlay = document.createElement("div");
 
-  overlay.innerHTML = `
-    <button
-      class="lightbox-close"
-      type="button"
-      aria-label="Close image"
-    >
-      ×
-    </button>
+    overlay.className = "gallery-lightbox";
 
-    <div class="lightbox-content">
-      <img
-        src="${image.currentSrc || image.src}"
-        alt="${image.alt || "Gallery image"}"
-      >
-    </div>
-  `;
+    overlay.innerHTML = `
+        <button class="lightbox-close" aria-label="Close image">
+            ×
+        </button>
 
-  document.body.appendChild(overlay);
+        <div class="lightbox-content">
+            <img
+                src="${image.currentSrc || image.src}"
+                alt="${image.alt || "Gallery image"}"
+            >
+        </div>
+    `;
 
-  activeLightbox = overlay;
+    document.body.appendChild(overlay);
 
-  // Prevent background scrolling while lightbox is open
-  document.body.classList.add("lightbox-open");
+    document.body.classList.add("lightbox-open");
 
-  // Small delay for opening animation
-  requestAnimationFrame(() => {
-    overlay.classList.add("lightbox-visible");
-  });
+    requestAnimationFrame(() => {
+        overlay.classList.add("lightbox-visible");
+    });
 
-  const closeButton =
-    overlay.querySelector(".lightbox-close");
+    const closeButton =
+        overlay.querySelector(".lightbox-close");
 
-  function closeLightbox() {
+    const content =
+        overlay.querySelector(".lightbox-content");
 
-    if (!activeLightbox) return;
+    function closeLightbox() {
 
-    overlay.classList.remove("lightbox-visible");
+        overlay.classList.remove("lightbox-visible");
 
-    setTimeout(() => {
+        document.body.classList.remove("lightbox-open");
 
-      if (overlay.parentNode) {
-        overlay.remove();
-      }
+        setTimeout(() => {
 
-      activeLightbox = null;
+            if (overlay.parentNode) {
+                overlay.remove();
+            }
 
-      // VERY IMPORTANT:
-      // Restore normal page scrolling
-      document.body.classList.remove("lightbox-open");
+        }, 250);
 
-    }, 250);
-  }
+        document.removeEventListener(
+            "keydown",
+            escapeHandler
+        );
+    }
 
-  closeButton.addEventListener("click", (event) => {
+    function escapeHandler(event) {
 
-    event.preventDefault();
-    event.stopPropagation();
-
-    closeLightbox();
-
-  });
-
-  // Click outside image closes lightbox
-  overlay.addEventListener("click", (event) => {
-
-    if (
-      event.target === overlay ||
-      event.target.classList.contains("lightbox-content")
-    ) {
-
-      closeLightbox();
+        if (event.key === "Escape") {
+            closeLightbox();
+        }
 
     }
 
-  });
+    closeButton.addEventListener(
+        "click",
+        (event) => {
 
-  // ESC closes lightbox
-  function escapeHandler(event) {
+            event.stopPropagation();
 
-    if (event.key === "Escape") {
+            closeLightbox();
 
-      closeLightbox();
+        }
+    );
 
-      document.removeEventListener(
+    overlay.addEventListener(
+        "click",
+        (event) => {
+
+            if (event.target === overlay) {
+                closeLightbox();
+            }
+
+        }
+    );
+
+    content.addEventListener(
+        "click",
+        (event) => {
+
+            event.stopPropagation();
+
+        }
+    );
+
+    document.addEventListener(
         "keydown",
         escapeHandler
-      );
-
-    }
-
-  }
-
-  document.addEventListener(
-    "keydown",
-    escapeHandler
-  );
-
+    );
 }
+
 
 galleryImages.forEach((image) => {
 
-  image.addEventListener("click", (event) => {
-
-    event.preventDefault();
-
-    openLightbox(image);
-
-  });
+    image.addEventListener(
+        "click",
+        () => {
+            openLightbox(image);
+        }
+    );
 
 });
 
